@@ -2,7 +2,7 @@ package org.practicatrim2.Polizas
 
 import org.practicatrim2.GestionClientes
 
-class PolizaCoche: Poliza {
+class PolizaCoche: Poliza() {
     override fun generarId() {
         var id : String
 
@@ -19,7 +19,7 @@ class PolizaCoche: Poliza {
 
         datosCliente.polizas.addLast(tipoPoliza)    }
 
-    override fun datosEspecificos() {
+    override fun datosEspecificos(): MutableList<String> {
         TODO("Not yet implemented")
     }
 }

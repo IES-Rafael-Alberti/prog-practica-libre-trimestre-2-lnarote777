@@ -2,7 +2,7 @@ package org.practicatrim2.Polizas
 
 import org.practicatrim2.GestionClientes
 
-class PolizaHogar : Poliza {
+class PolizaHogar : Poliza() {
 
     override fun generarId() {
         var id : String
@@ -24,7 +24,7 @@ class PolizaHogar : Poliza {
 
     }
 
-    override fun datosEspecificos() {
+    override fun datosEspecificos(): MutableList<String> {
         TODO("Not yet implemented")
     }
 

@@ -1,2 +1,0 @@
-
-Cliente(nombre=Tocayo N3, dni=12345678x, telefono=[12345678907654321234567], polizas=[])

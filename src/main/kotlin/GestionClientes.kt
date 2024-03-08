@@ -43,7 +43,7 @@ class GestionClientes {
             }
             datosClientes.remove(cliente)
         }catch (e: Exception){
-            println("***Error Interno ***")
+            println("*** Error Interno ***")
         }
 
 
