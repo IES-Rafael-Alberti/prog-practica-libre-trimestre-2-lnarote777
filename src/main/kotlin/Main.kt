@@ -18,21 +18,29 @@ fun String.capitalizar(): String{
 fun main() {
 
     val gestionClientes = GestionClientes()
+
+    val polizaMoto= PolizaMoto(gestionClientes)
+    polizaMoto.mostrarPoliza("290-867")
 //
-//    val polizaMoto = PolizaMoto(gestionClientes)
-//    polizaMoto.grabarPoliza()
-//
-//    print("id:")
-//    val id = readln()
-//    polizaMoto.mostrarPoliza(id)
-
-
-    val id = PolizaMoto(gestionClientes).generarId()
-
-    print(id)
-
 //    menu()
-//    respuestaUsuario()
+//    val opcion = readln().toInt()
+//
+//    if (opcion == 1){
+//        menuClienteExistente()
+//        val op = readln().toInt()
+//        if(op == 1 ){
+//            menuPolizas()
+//            val opc = readln().toInt()
+//            if (opc == 1){
+//                polizaMoto.grabarPoliza()
+//            }
+//        }else if (op == 2){
+//
+//        }
+//    }else if (opcion == 2){
+//        println("Que póliza desea contratar ?")
+//        menuPolizas()
+//    }
 
 
 

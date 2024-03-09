@@ -19,7 +19,6 @@ class GestionClientes {
     fun altaCliente(cliente: Cliente){
 
         try {
-            datosClientes.add(cliente)
             val fileWriter = FileWriter(archivo, true)
             val bufferedWriter = BufferedWriter(fileWriter)
             bufferedWriter.write(cliente.toString())
@@ -31,20 +30,16 @@ class GestionClientes {
         }catch (e: Exception){
             println("***Error - al añadir cliente***")
         }
-        
+
     }
 
     fun bajaCliente(cliente: Cliente){
 
         try {
-            val lineas = archivo.readLines().toMutableList()
-            val lineaEliminar = cliente.toString()
-            if(lineas.remove(lineaEliminar)){
-                archivo.writeText(lineas.joinToString("\n"))
-            }else{
-                println("No se encontró el cliente especificado")
-            }
-            datosClientes.remove(cliente)
+            val lineas = archivo.readLines().filter { !it.contains(cliente.toString()) }
+            archivo.writeText(lineas.joinToString("\n"))
+            println("cliente eliminado")
+
         }catch (e: Exception){
             println("*** Error Interno ***")
         }
@@ -76,6 +71,11 @@ class GestionClientes {
         }
     }
 
+    /**
+    * Solicita al usuario introducir los datos de un cliente, incluyendo nombre, DNI y teléfono(s).
+    * Recolecta estos datos mediante llamadas a funciones auxiliares.
+    * @return El cliente creado con los datos proporcionados por el usuario.
+    */
     fun pedirDatosCliente(): Cliente {
 
         var cliente: Cliente
@@ -90,66 +90,81 @@ class GestionClientes {
 
     }
 
+    /**
+     * Solicita al usuario introducir el nombre completo.
+     * El nombre no puede estar en blanco.
+     * @return El nombre completo proporcionado por el usuario.
+     */
     private fun pedirNombre(): String{
 
         var nombre: String
 
         while(true){
-            try {
-                print("Nombre completo: ")
-                nombre = readln().capitalizar()
-                if (nombre.isBlank()) {
-                    throw Exception("**Error - El nombre no puede estar en blanco**")
-                }else{
-                    break
-                }
 
-            }catch (e: Exception){
-                println(e)
+            print("Nombre completo: ")
+            nombre = readln().capitalizar()
+            if (nombre.isBlank()) {
+                println("**Error - El nombre no puede estar en blanco**")
+            }else{
+                break
             }
         }
 
         return nombre
     }
 
-    fun pedirDni(): String{
+    /**
+     * Solicita al usuario introducir el DNI.
+     * El DNI no puede estar en blanco y debe tener 9 caracteres, incluyendo 8 dígitos y una letra.
+     * @return El DNI proporcionado por el usuario.
+     */
+    private fun pedirDni(): String{
         var dni : String
 
         while (true){
             print("DNI: ")
             dni = readln().uppercase()
             if (dni.isBlank()) {
-                print(mensaje)
+                println(mensaje)
             }else if (dni.length != 9) {
-                throw Exception("** Error - El dni debe tener 9 caracteres**")
+                println("** Error - El dni debe tener 9 caracteres**")
             }else if (!dni.substring(0,7).all { it.isDigit() }){
-
-            }
-            else{
+                println("*** Error - formato de DNI incorrecto ***")
+            }else if (!dni.last().isLetter()){
+                println("*** Error - formato de DNI incorrect")
+            }else{
                 break
             }
         }
         return dni
     }
-
-    private fun pedirTelefono(): List<String>{
+    
+    /**
+     * Solicita al usuario introducir uno o varios números de teléfono separados por ' / '.
+     * Devuelve una lista de números de teléfono introducidos.
+     * Si no se introducen teléfonos o se produce un error, solicita al usuario que reintente.
+     * @return Lista de números de teléfono introducidos.
+     */
+    fun pedirTelefono(): List<String>{
 
         var telefonos: List<String>
 
         while (true){
 
-            try {
-                print("Teléfono(s) **Introducir los teléfonos separados asi: ' / '**: ")
-                telefonos = readln().split(" / ")
-                if (telefonos.isEmpty()){
-                    throw Exception("***Instroduzca al menos un teléfono.")
-                }else{
-                    break
-                }
 
-            }catch (e: Exception){
-                println(e)
+            print("Teléfono(s) **Introducir los teléfonos separados asi: ' / '**: ")
+            telefonos = readln().split("/")
+            if (telefonos.isEmpty()){
+                println("***Instroduzca al menos un teléfono.")
+            }else if (!telefonos.all { it -> it.substring(0,8).all { it.isDigit() } }){
+                println("*** Error - Debe introducir un número de teléfono válido.")
+            }else if (!telefonos.all { it -> it.length == 9 }){
+                println("Error - Introduzca un número válido")
             }
+            else{
+                break
+            }
+
         }
 
         return telefonos
@@ -167,7 +182,5 @@ class GestionClientes {
         }
 
     }
-
-
 
 }

@@ -1,3 +1,1 @@
-Cliente(nombre=Alicia, dni=67765268o, telefono=[7382742634872637862384], polizas=[])
-Cliente(nombre=Lara, dni=32098111r, telefono=[7384592345], polizas={})
-Cliente(nombre=Lara, dni=76543673l, telefono=[324234234234], polizas={})
+Cliente(nombre=Lara, dni=32089777Q, telefono=[765564453, 565432342], polizas={290-867=MOTO})

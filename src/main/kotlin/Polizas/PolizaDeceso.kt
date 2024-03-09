@@ -2,7 +2,7 @@ package org.practicatrim2.Polizas
 
 import org.practicatrim2.GestionClientes
 
-class PolizaHogar ( val gestor: GestionClientes): Poliza() {
+class PolizaDeceso ( gestor : GestionClientes): PolizaVida(gestor) {
 
     /**
      * Registra una nueva póliza en el sistema.
@@ -12,14 +12,14 @@ class PolizaHogar ( val gestor: GestionClientes): Poliza() {
      */
     override fun grabarPoliza() {
         val datosCliente = gestor.pedirDatosCliente()
-        val tipoPoliza = TipoPoliza.HOGAR
+        val tipoPoliza = TipoPoliza.DECESO
         val id = generarId()
         val fecha = generarFechaAlta()
 
         datosCliente.polizas[id] = tipoPoliza
 
-        val datosHogar = datosEspecificos()
-        val datos = listOf(datosCliente, datosHogar, fecha)
+        val datosCoche = datosEspecificos()
+        val datos = listOf(datosCliente, datosCoche, fecha)
 
         polizas[id] = datos
         gestor.altaCliente(datosCliente)
@@ -27,10 +27,5 @@ class PolizaHogar ( val gestor: GestionClientes): Poliza() {
         guardarPoliza(polizas)
 
     }
-
-    override fun datosEspecificos(): MutableList<String> {
-        TODO("Not yet implemented")
-    }
-
 
 }

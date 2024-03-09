@@ -1,15 +1,18 @@
 package org.practicatrim2
 
 interface Muenus {
+
     fun menu()
+
 }
 
-fun menuCliente(){
+fun menuClienteExistente(){
 
-    println("1. Darse de alta en Ocaso")
+    println("1. Contratar nueva póliza")
     println("2. Darse de baja de Ocaso")
-    println("3. Ver polizas contratadas")
+    println("3. Ver pólizas contratadas")
     println("4. Ver estado cliente")
+
 
 }
 
@@ -25,4 +28,5 @@ fun menuPolizas(){
     println("2. Hogar")
     println("3. Vida")
     println("4. Accidente")
+    println("5. ")
 }
