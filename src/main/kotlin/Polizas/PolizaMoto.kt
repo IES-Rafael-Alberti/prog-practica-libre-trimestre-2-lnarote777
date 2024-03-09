@@ -4,32 +4,26 @@ import org.practicatrim2.Cliente
 import org.practicatrim2.GestionClientes
 import org.practicatrim2.capitalizar
 
-class PolizaMoto : Poliza() {
-
-    val clientes = mutableMapOf<Cliente, MutableList<String>>()
-
-    override fun generarId(): String {
-        var id : String
-
-        val numero1 = (1..999).random().toString()
-        val numero2 = (1..999).random().toString()
-
-        id = "$numero1-$numero2"
-
-        return id
-    }
+class PolizaMoto(val gestor :GestionClientes ) : Poliza() {
 
 
-    override fun grabarPoliza(cliente: GestionClientes) {
-        val datosCliente = cliente.pedirDatosCliente()
+    override fun grabarPoliza() {
+        val datosCliente = gestor.pedirDatosCliente()
+
+        if (!gestor.clienteExistente(datosCliente)){
+            gestor.altaCliente(datosCliente)
+        }
 
         val tipoPoliza = TipoPoliza.MOTO
 
-        datosCliente.polizas.addLast(tipoPoliza)
+        val id = generarId()
+
+        datosCliente.polizas[id] = tipoPoliza
 
         val datosMoto = datosEspecificos()
+        val datos = Pair(datosCliente, datosMoto)
 
-        clientes[datosCliente] = datosMoto
+        polizas[id] = datos
 
     }
 
@@ -55,8 +49,8 @@ class PolizaMoto : Poliza() {
         while (true){
             print("Matrícula de la moto a asegurar: ")
             matricula = readln().uppercase()
-            if (matricula.isBlank()){
-                println(mensaje)
+            if (matricula.isNullOrBlank()){
+                println(gestor.mensaje)
             }else if (matricula.length != 7){
                 println("*** Matrícula inválida. Asegurese de que tenga 7 caracteres(4 números y 3 letras) ***")
             }else if (!matricula.substring(0,3).all { it.isDigit() }){
@@ -76,10 +70,10 @@ class PolizaMoto : Poliza() {
         var marca: String
 
         while (true){
-            println("Marca: ")
+            print("Marca: ")
             marca = readln().capitalizar()
-            if (marca.isBlank()){
-                println(mensaje)
+            if (marca.isNullOrBlank()){
+                println(gestor.mensaje)
             }else{
                 break
             }
@@ -95,7 +89,7 @@ class PolizaMoto : Poliza() {
             println("Marca: ")
             modelo = readln().capitalizar()
             if (modelo.isBlank()){
-                println(mensaje)
+                println(gestor.mensaje)
             }else{
                 break
             }

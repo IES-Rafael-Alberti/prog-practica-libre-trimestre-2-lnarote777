@@ -7,10 +7,13 @@ import java.io.FileWriter
 
 class GestionClientes {
 
-    private val path = "baseDatos/Clientes.txt"
+    private val path = "src/main/kotlin/baseDatos/Clientes.txt"
     private val archivo = File(path)
 
     private val datosClientes = mutableListOf<Cliente>() //Resguardo de los clientes
+
+    val mensaje: String
+        get() = "*** No puede dejar este campo en blanco ***"
 
 
     fun altaCliente(cliente: Cliente){
@@ -58,6 +61,21 @@ class GestionClientes {
 
     }
 
+    fun buscarCliente(dni: String): Boolean? {
+        if(archivo.exists()){
+            archivo.forEachLine { cliente ->
+                if (cliente.contains(dni)){
+                    return@forEachLine
+                }
+            }
+            println("No se encontro ningun cliente con el dni: $dni")
+            return false
+        }else{
+            println("*** Error en la base de datos - No se encontro el archivo ***")
+            return null
+        }
+    }
+
     fun pedirDatosCliente(): Cliente {
 
         var cliente: Cliente
@@ -94,22 +112,21 @@ class GestionClientes {
         return nombre
     }
 
-    private fun pedirDni(): String{
+    fun pedirDni(): String{
         var dni : String
 
         while (true){
-            try {
-                print("DNI: ")
-                dni = readln()
-                if (dni.isBlank()) {
-                    throw Exception("** Error - El dni no puede estar en blanco**")
-                }else if (dni.length != 9) {
-                    throw Exception("** Error - El dni debe tener 9 caracteres**")
-                }else{
-                    break
-                }
-            }catch (e: Exception){
-                println(e)
+            print("DNI: ")
+            dni = readln().uppercase()
+            if (dni.isBlank()) {
+                print(mensaje)
+            }else if (dni.length != 9) {
+                throw Exception("** Error - El dni debe tener 9 caracteres**")
+            }else if (!dni.substring(0,7).all { it.isDigit() }){
+
+            }
+            else{
+                break
             }
         }
         return dni
@@ -138,6 +155,18 @@ class GestionClientes {
         return telefonos
     }
 
+
+    fun clienteExistente(cliente: Cliente): Boolean{
+
+        val dni = cliente.dni
+
+        if (buscarCliente(dni) != null && buscarCliente(dni) == true){
+            return true
+        }else{
+            return false
+        }
+
+    }
 
 
 
