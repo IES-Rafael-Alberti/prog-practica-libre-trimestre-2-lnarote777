@@ -1,6 +1,7 @@
 package org.practicatrim2
 
 import org.practicatrim2.Clientes.GestionClientes
+import org.practicatrim2.Polizas.Poliza
 import org.practicatrim2.Polizas.PolizaMoto
 
 
@@ -18,11 +19,12 @@ fun String.capitalizar(): String{
 fun main() {
 
     val gestionClientes = GestionClientes()
-
     val polizaMoto= PolizaMoto(gestionClientes)
-    polizaMoto.grabarPoliza()
+    gestionClientes.guardarClientesDelArchivo()
+    polizaMoto.guardarPolizasDelArchivo()
+//    polizaMoto.grabarPoliza()
 
-   gestionClientes.listadoClientes()
+   polizaMoto.mostrarPoliza("806-051")
 
 
 }

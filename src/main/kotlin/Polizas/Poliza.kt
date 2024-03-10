@@ -51,53 +51,23 @@ abstract class Poliza {
     }
 
     ///
-    fun buscarPoliza(id: String): Pair<Pair<String, List<String>>?, Pair<String, List<String>>?> {
-        TODO("Modificar")
-        var clienteDatos :Pair<String, List<String>>? = null
-        var polizaDatos :Pair<String, List<String>>? = null
-        if (archivo.exists()){
-            archivo.forEachLine {linea ->
-                if (linea.contains(id)) {
-                    val partes = linea.split(", ") // Separar la línea en partes
-                    val datosPoliza = partes[1].split(",").map { it.trim() } // Extraer datos de la póliza
-                    polizaDatos = Pair(id, datosPoliza)
-                    val datosCliente = datosPoliza.subList(2, datosPoliza.size)// Extraer datos del cliente
-                    clienteDatos = Pair(id, datosCliente)
-                    return@forEachLine
-                }
-            }
-        } else {
-            println("*** Error en la base de datos - No se encontró el archivo ***")
-        }
-
-        return Pair(clienteDatos, polizaDatos)
-    }
+    fun buscarPoliza(id: String): MutableMap<String, List<Any>>? = polizas.find { it.keys.contains(id) }
 
     //
     fun mostrarPoliza(id: String) {
-        TODO("Modificar")
-        val (clienteDatos, polizaDatos) = buscarPoliza(id)
+        val poliza = buscarPoliza(id)
 
-        if (clienteDatos != null && polizaDatos != null) {
-            println("ID de la póliza: $id")
-            println("Datos del cliente:")
-            println("Nombre: ${clienteDatos.second[0]}")
-            println("DNI: ${clienteDatos.second[1]}")
-            println("Teléfono: ${clienteDatos.second.subList(2, clienteDatos.second.size)}")
-            println("Datos de la póliza:")
-            println("Tipo de póliza: ${polizaDatos.second[0]}")
-
-            if (polizaDatos.second[0] == "MOTO") {
-                println("Matrícula: ${polizaDatos.second[1]}")
-                println("Marca: ${polizaDatos.second[2]}")
-                println("Modelo: ${polizaDatos.second[3]}")
-                println("Fecha alta: ${polizaDatos.second[4]}")
-            } else if (polizaDatos.first == "VIDA") {
-                println("Fecha alta: ${polizaDatos.second[1]}")
-            }
-        } else {
-            println("No se encontró ninguna póliza con el id: $id")
+        if (poliza != null){
+            println("Id Póliza: $id")
+            println("Datos póliza: ")
+            val datos = poliza.values.first()
+            println("dni contratador: ${datos[0]}")
+            println("Datos poliza:")
+            println(datos[1])
+        }else{
+            println("No se encontro la poliza con id: $id")
         }
+
     }
 
     /**
@@ -111,6 +81,7 @@ abstract class Poliza {
         try {
 
             polizas.add(poliza)
+
             val fileWriter = FileWriter(archivo, true)
             val bufferedWriter = BufferedWriter(fileWriter)
             bufferedWriter.write(poliza.toString ())
@@ -125,7 +96,11 @@ abstract class Poliza {
 
     }
 
-
+    /**
+     * Guarda las pólizas del archivo de registro en la lista de pólizas.
+     *
+     * @return La lista de pólizas guardadas, representadas como mapas de datos en el formato especificado.
+     */
     fun guardarPolizasDelArchivo(): MutableList<MutableMap<String, List<Any>>> {
 
         archivo.forEachLine { linea ->
@@ -140,25 +115,39 @@ abstract class Poliza {
         return polizas
     }
 
+    /**
+     * Convierte una cadena de texto en el formato de una póliza a un mapa de datos.
+     *
+     * @param linea La cadena de texto que representa una póliza en el formato especificado.
+     * @return Un mapa mutable de datos que representa la póliza, donde la clave es el ID de la póliza y el valor es una lista de datos asociados.
+     * Si la cadena no tiene el formato esperado, se retorna null.
+     */
     private fun deStringAPoliza(linea: String): MutableMap<String, List<Any>>? {
 
         val linea = linea.substring(1, linea.length - 1) // quita corchetes
-        val partes = linea.split("=")
+        val partes = linea.split("=", limit =  2)
         val idPoliza = partes[0]
-        val datos = partes[1]
+        val datosStr = partes[1]
+//
+       val datos = mutableListOf<Any>()
+//
+       val partesDatos = datosStr.substring(1, datosStr.length - 1).split(", ")
+        if (partesDatos.size > 6){
+            val dni = partes[2].substringAfter("dni=").trim() /////////////////
+            val datosEspecificos = partesDatos.subList(5, partesDatos.size)
 
-        val valores = if (datos.startsWith("[") && datos.endsWith("]")) {
-            // Eliminamos los corchetes y dividimos los elementos en la lista
-            datos.substring(1, datos.length - 1).split(", ")
-        } else {
-            // Si no contiene corchetes, lo añadimos como un solo elemento a la lista
-            listOf(datos)
+            datos.add(dni)
+            datos.add(datosEspecificos)
+        }else{
+            print("cuac")
         }
 
         val poliza = mutableMapOf<String, List<Any>>()
-        poliza[idPoliza] = valores
+        poliza[idPoliza] = datos
 
         return poliza
+
+
     }
 
 
