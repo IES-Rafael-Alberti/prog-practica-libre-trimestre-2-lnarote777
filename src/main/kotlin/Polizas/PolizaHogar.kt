@@ -1,7 +1,13 @@
 package org.practicatrim2.Polizas
 
-import org.practicatrim2.GestionClientes
+import org.practicatrim2.Clientes.GestionClientes
+import org.practicatrim2.capitalizar
 
+/**
+ * Clase que representa una póliza de seguro para una vivienda.
+ *
+ * @property gestor El gestor de clientes asociado a la póliza.
+ */
 class PolizaHogar ( val gestor: GestionClientes): Poliza() {
 
     /**
@@ -21,15 +27,134 @@ class PolizaHogar ( val gestor: GestionClientes): Poliza() {
         val datosHogar = datosEspecificos()
         val datos = listOf(datosCliente, datosHogar, fecha)
 
-        polizas[id] = datos
+        poliza[id] = datos
         gestor.altaCliente(datosCliente)
 
-        guardarPoliza(polizas)
+        guardarPoliza(poliza)
 
     }
 
-    override fun datosEspecificos(): MutableList<String> {
-        TODO("Not yet implemented")
+    /**
+     * Devuelve una lista mutable que contiene datos específicos sobre un hogar.
+     * Se solicita al usuario que introduzca la dirección, el número de habitaciones,
+     * el número de personas habitantes y el número de puertas del hogar.
+     *
+     * @return Una lista mutable que contiene los datos específicos del hogar.
+     */
+    override fun datosEspecificos(): MutableList<Any> {
+        val hogar = mutableListOf<Any>()
+
+        println("Introduzca los siguientes datos:")
+        val direccion = pedirDireccicon()
+        val habitaciones = pedirHabitaciones()
+        val personasHabitantes = personasHabitantes()
+        val nPuertas = pedirPuertas()
+
+        hogar.add(direccion)
+        hogar.add(habitaciones)
+        hogar.add(personasHabitantes)
+        hogar.add(nPuertas)
+
+        return hogar
+    }
+
+    /**
+     * Solicita al usuario que ingrese una dirección hasta que se proporcione una entrada no nula o no vacía.
+     * La dirección proporcionada se capitaliza antes de devolverla.
+     *
+     * @return La dirección ingresada por el usuario, capitalizada.
+     */
+    private fun pedirDireccicon(): String{
+
+        var direccion: String
+
+        while (true){
+            print("Dirección: ")
+            direccion = readln().capitalizar()
+            if(direccion.isNullOrBlank()) {
+                println(gestor.mensaje)
+            }else{
+                break
+            }
+        }
+
+        return direccion
+
+    }
+
+    /**
+     * Solicita al usuario que introduzca el número de habitaciones, incluyendo el salón.
+     * Se sigue solicitando al usuario hasta que se proporciona un número válido.
+     *
+     * @return El número de habitaciones ingresado por el usuario.
+     */
+    private fun pedirHabitaciones(): Int{
+        var nHabitaciones: Int
+
+        while (true){
+            println("Número de habitaciones (Salón incluido): ")
+            nHabitaciones = readln().toIntOrNull() ?: continue
+            if (nHabitaciones <= 0){
+                println("*** El número de habitaciones no puede ser negativo ***")
+            }else if (nHabitaciones == null){
+                println(gestor.mensaje)
+            }else{
+                break
+            }
+        }
+
+        return nHabitaciones
+    }
+
+    /**
+     * Solicita al usuario que introduzca el número de personas que habitan la casa.
+     * Continúa solicitando al usuario hasta que se proporcione un número válido (mayor o igual a cero).
+     * Si la entrada no puede ser convertida a un número entero, se asume cero personas.
+     *
+     * @return El número de personas que habitan la casa, ingresado por el usuario. Si la entrada no es válida,
+     *         se devuelve cero.
+     */
+    private fun personasHabitantes(): Int{
+
+        var personas: Int
+
+        while (true){
+            print("Número de personas que habitan la casa: ")
+            personas = readln().toIntOrNull() ?: 0
+            if (personas < 0){
+                println("*** El numero de personas no puede ser un número negativo ***")
+            }else{
+                break
+            }
+        }
+
+        return personas
+    }
+
+    /**
+     * Solicita al usuario que introduzca el número de puertas de acceso a la vivienda.
+     * Continúa solicitando al usuario hasta que se proporcione un número válido (mayor que cero).
+     * Si la entrada no puede ser convertida a un número entero, se muestra un mensaje de error y se solicita nuevamente.
+     *
+     * @return El número de puertas de acceso a la vivienda ingresado por el usuario.
+     */
+    private fun pedirPuertas(): Int{
+
+        var puertas: Int
+
+        while (true){
+            println("Número de puertas de acceso a la vivienda: ")
+            puertas = readln().toIntOrNull() ?: continue
+            if (puertas <= 0){
+                println("El numero de puertas no puede ser neativo ni 0")
+            }else if (puertas == null){
+                println(gestor.mensaje)
+            }else{
+                break
+            }
+        }
+
+        return puertas
     }
 
 

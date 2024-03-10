@@ -1,6 +1,6 @@
 package org.practicatrim2.Polizas
 
-import org.practicatrim2.GestionClientes
+import org.practicatrim2.Clientes.GestionClientes
 import org.practicatrim2.capitalizar
 
 class PolizaCoche(val gestor : GestionClientes): Poliza() {
@@ -22,10 +22,10 @@ class PolizaCoche(val gestor : GestionClientes): Poliza() {
         val datosCoche = datosEspecificos()
         val datos = listOf(datosCliente, datosCoche, fecha)
 
-        polizas[id] = datos
+        poliza[id] = datos
         gestor.altaCliente(datosCliente)
 
-        guardarPoliza(polizas)
+        guardarPoliza(poliza)
 
     }
 
@@ -34,9 +34,9 @@ class PolizaCoche(val gestor : GestionClientes): Poliza() {
      * Solicita al usuario introducir estos datos a través de la consola.
      * @return Una lista mutable que contiene la matrícula, marca y modelo del coche.
      */
-    override fun datosEspecificos(): MutableList<String> {
+    override fun datosEspecificos(): MutableList<Any> {
 
-        val coche = mutableListOf<String>()
+        val coche = mutableListOf<Any>()
         val matricula = pedirMatricula()
         val marca = pedirMarca()
         val modelo = pedirModelo()

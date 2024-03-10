@@ -1,1 +1,4 @@
-Cliente(nombre=Lara, dni=32089777Q, telefono=[765564453, 565432342], polizas={290-867=MOTO})
+
+Cliente(nombre=Lara, edad=19, dni=32089777Q, telefono=653533548, polizas={806-051=MOTO})
+Cliente(nombre=Antonio Garrudo, edad=78, dni=13243233R, telefono=890876342, polizas={689-287=MOTO})
+Cliente(nombre=Juna De Arcos, edad=35, dni=78965453I, telefono=789098123, polizas={094-765=MOTO})

@@ -1,14 +1,20 @@
 package org.practicatrim2.Polizas
 
+import org.practicatrim2.Clientes.Cliente
 import java.io.BufferedWriter
 import java.io.File
 import java.io.FileWriter
 
 abstract class Poliza {
 
-    val polizas = mutableMapOf<String, List<Any>>()
+    //Resguardo de las pólizas. Cuando empiza el programa se cargan las pólizas del archivo a la lista para operar más fácilmente
+    private val polizas = mutableListOf<MutableMap<String, List<Any>>>()
+    val poliza = mutableMapOf<String, List<Any>>()
     private val path = "src/main/kotlin/baseDatos/polizas.txt"
     private val archivo = File(path)
+
+    abstract fun grabarPoliza()
+    abstract fun datosEspecificos() : MutableList<Any>
 
     /**
      * Genera un ID único para una póliza.
@@ -26,17 +32,17 @@ abstract class Poliza {
 
             id = "$numero1-$numero2"
 
-        }while (polizas.containsKey(id)) // mientras exista el id generado en el map de polizas generara un id distinto hasta que que no coincida conninguno existente (se asegura de no crear duplicados)
+        }while (poliza.containsKey(id))
 
         return id
     }
-    abstract fun grabarPoliza()
-    abstract fun datosEspecificos() : MutableList<String>
+
     fun generarFechaAlta(): String {
 
+        //Genera una fecha aleatoria
         val dia = String.format("%02d", (1..31).random())
         val mes = String.format("%02d", (1..12).random())
-        val anio = String.format("%02d", (1980..2023).random())
+        val anio = (1980..2023).random().toString()
 
         val fecha = "$dia/$mes/$anio"
 
@@ -44,8 +50,9 @@ abstract class Poliza {
 
     }
 
+    ///
     fun buscarPoliza(id: String): Pair<Pair<String, List<String>>?, Pair<String, List<String>>?> {
-
+        TODO("Modificar")
         var clienteDatos :Pair<String, List<String>>? = null
         var polizaDatos :Pair<String, List<String>>? = null
         if (archivo.exists()){
@@ -66,7 +73,9 @@ abstract class Poliza {
         return Pair(clienteDatos, polizaDatos)
     }
 
+    //
     fun mostrarPoliza(id: String) {
+        TODO("Modificar")
         val (clienteDatos, polizaDatos) = buscarPoliza(id)
 
         if (clienteDatos != null && polizaDatos != null) {
@@ -91,11 +100,17 @@ abstract class Poliza {
         }
     }
 
-
+    /**
+     * Guarda una póliza en el archivo de registro.
+     *
+     * @param poliza El mapa de datos que representa la póliza a guardar. Debe contener la información de la póliza
+     * en el formato especificado.
+     */
     fun guardarPoliza(poliza:  MutableMap<String, List<Any>>){
 
         try {
 
+            polizas.add(poliza)
             val fileWriter = FileWriter(archivo, true)
             val bufferedWriter = BufferedWriter(fileWriter)
             bufferedWriter.write(poliza.toString ())
@@ -108,8 +123,45 @@ abstract class Poliza {
             println("***Error***")
         }
 
-
     }
+
+
+    fun guardarPolizasDelArchivo(): MutableList<MutableMap<String, List<Any>>> {
+
+        archivo.forEachLine { linea ->
+            val poliza = deStringAPoliza(linea)
+            if (poliza != null) {
+                polizas.add(poliza)
+            } else {
+                println("Error en el formato de la línea: $linea")
+            }
+        }
+
+        return polizas
+    }
+
+    private fun deStringAPoliza(linea: String): MutableMap<String, List<Any>>? {
+
+        val linea = linea.substring(1, linea.length - 1) // quita corchetes
+        val partes = linea.split("=")
+        val idPoliza = partes[0]
+        val datos = partes[1]
+
+        val valores = if (datos.startsWith("[") && datos.endsWith("]")) {
+            // Eliminamos los corchetes y dividimos los elementos en la lista
+            datos.substring(1, datos.length - 1).split(", ")
+        } else {
+            // Si no contiene corchetes, lo añadimos como un solo elemento a la lista
+            listOf(datos)
+        }
+
+        val poliza = mutableMapOf<String, List<Any>>()
+        poliza[idPoliza] = valores
+
+        return poliza
+    }
+
+
 
 
 

@@ -1,1 +1,3 @@
-{290-867=[Cliente(nombre=Lara, dni=32089777Q, telefono=[765564453, 565432342], polizas={290-867=MOTO}), [7777UIO, Lolo, King], 17/12/2001]}
+{806-051=[Cliente(nombre=Lara, edad=19, dni=32089777Q, telefono=653533548, polizas={806-051=MOTO}), [8987UYT, Juan, Lola], 18/02/2001]}
+{689-287=[Cliente(nombre=Antonio Garrudo, edad=78, dni=13243233R, telefono=890876342, polizas={689-287=MOTO}), [7777YHN, Tryo, Poy], 01/07/1984]}
+{094-765=[Cliente(nombre=Juna De Arcos, edad=35, dni=78965453I, telefono=789098123, polizas={094-765=MOTO}), [8908UJG, Uji, Loop], 30/05/1986]}

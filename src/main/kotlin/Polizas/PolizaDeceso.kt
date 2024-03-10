@@ -1,6 +1,6 @@
 package org.practicatrim2.Polizas
 
-import org.practicatrim2.GestionClientes
+import org.practicatrim2.Clientes.GestionClientes
 
 class PolizaDeceso ( gestor : GestionClientes): PolizaVida(gestor) {
 
@@ -21,10 +21,10 @@ class PolizaDeceso ( gestor : GestionClientes): PolizaVida(gestor) {
         val datosCoche = datosEspecificos()
         val datos = listOf(datosCliente, datosCoche, fecha)
 
-        polizas[id] = datos
+        poliza[id] = datos
         gestor.altaCliente(datosCliente)
 
-        guardarPoliza(polizas)
+        guardarPoliza(poliza)
 
     }
 
