@@ -9,11 +9,15 @@ import java.io.FileWriter
 
 class GestionClientes {
 
-    private val path = "src/main/kotlin/baseDatos/Clientes.txt"
-    private val archivo = File(path)
 
-    //Resguardo de los clientes. Cuando empiza el programa se cargan los clientes del archivo a la lista para operar más fácilmente
-    private val datosClientes = mutableListOf<Cliente>()
+    companion object{
+        private val path = "src/main/kotlin/baseDatos/Clientes.txt"
+        private val archivo = File(path)
+
+        //Resguardo de los clientes. Cuando empiza el programa se cargan los clientes del archivo a la lista para operar más fácilmente
+        private val datosClientes = mutableListOf<Cliente>()
+    }
+
 
     val mensaje: String
         get() = "*** No puede dejar este campo en blanco ***"
@@ -69,7 +73,7 @@ class GestionClientes {
      * Muestra un listado de todos los clientes registrados en el archivo de registro.
      * Los clientes se muestran uno por uno en la consola.
      */
-    fun listadoClientes(){
+    fun mostrarCliente(){
 
         val datosClientes = guardarClientesDelArchivo()
 
@@ -134,7 +138,7 @@ class GestionClientes {
      * El DNI no puede estar en blanco y debe tener 9 caracteres, incluyendo 8 dígitos y una letra.
      * @return El DNI proporcionado por el usuario.
      */
-    private fun pedirDni(): String{
+    fun pedirDni(): String{
         var dni : String
 
         while (true){
@@ -169,10 +173,10 @@ class GestionClientes {
 
             try {
                 print("Teléfono ** Un telefono operativo **: ")
-                telefono = readln().toIntOrNull() ?: continue
+                telefono = readln().toIntOrNull() ?: throw Exception()
                 if (telefono == null){
                     println(mensaje)
-                }else if (!(telefono.toString().length == 9)){
+                }else if (telefono.toString().length != 9){
                     println("*** Error - Debe introducir un número de teléfono válido y sin prefijo. ***")
                 }else{
                     break
@@ -180,7 +184,6 @@ class GestionClientes {
             }catch (e: Exception){
                 println("*** Error - Introduzca un número válido ***")
             }
-
 
         }
 

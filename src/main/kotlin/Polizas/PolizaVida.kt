@@ -45,11 +45,15 @@ open class PolizaVida (val gestor : GestionClientes): Poliza() {
      */
     override fun datosEspecificos(): MutableList<Any> {
 
-        var vida = mutableListOf<Any>()
+        val vida = mutableListOf<Any>()
 
         val salud = datoSalud()
         val altura = pedirAltura()
         val peso = pedirPeso()
+
+        vida.add(salud)
+        vida.add(altura)
+        vida.add(peso)
 
         return vida
     }
@@ -69,7 +73,7 @@ open class PolizaVida (val gestor : GestionClientes): Poliza() {
             salud = readln().capitalizar()
             if (salud.isNullOrBlank()){
                 println(gestor.mensaje)
-            }else if (salud != "Si" || salud != "No"){
+            }else if (salud != "Si" && salud != "No"){
                 println("*** Responda si o no por favor ***")
             }else{
                 break
@@ -91,7 +95,7 @@ open class PolizaVida (val gestor : GestionClientes): Poliza() {
 
         while (true){
             try {
-                println("Introduzca su peso en Kg: ")
+                print("Introduzca su peso en Kg: ")
                 peso = readln().format(".2f").toFloatOrNull() ?: continue
                 if (peso == null){
                     print(gestor.mensaje)
@@ -117,7 +121,7 @@ open class PolizaVida (val gestor : GestionClientes): Poliza() {
         var altura: Int
 
         while (true){
-            print("Introduzca su altura: ")
+            print("Introduzca su altura en cm: ")
             altura = readln().toIntOrNull() ?: continue
             if (altura == null){
                 println(gestor.mensaje)

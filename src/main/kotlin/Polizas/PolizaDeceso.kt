@@ -18,8 +18,8 @@ class PolizaDeceso ( gestor : GestionClientes): PolizaVida(gestor) {
 
         datosCliente.polizas[id] = tipoPoliza
 
-        val datosCoche = datosEspecificos()
-        val datos = listOf(datosCliente, datosCoche, fecha)
+        val datosVida = datosEspecificos()
+        val datos = listOf(datosCliente, datosVida, fecha)
 
         poliza[id] = datos
         gestor.altaCliente(datosCliente)

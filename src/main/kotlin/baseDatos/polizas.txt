@@ -1,3 +1,3 @@
-{806-051=[Cliente(nombre=Lara, edad=19, dni=32089777Q, telefono=653533548, polizas={806-051=MOTO}), [8987UYT, Juan, Lola], 18/02/2001]}
-{689-287=[Cliente(nombre=Antonio Garrudo, edad=78, dni=13243233R, telefono=890876342, polizas={689-287=MOTO}), [7777YHN, Tryo, Poy], 01/07/1984]}
-{094-765=[Cliente(nombre=Juna De Arcos, edad=35, dni=78965453I, telefono=789098123, polizas={094-765=MOTO}), [8908UJG, Uji, Loop], 30/05/1986]}
+{080-281=[Cliente(nombre=Andres Mahindo, edad=19, dni=53586562N, telefono=644297659, polizas={080-281=COCHE}), [7648LZT, MERCEDES, CLA], 24/05/2000]}
+{187-023=[Cliente(nombre=Lara, edad=67, dni=87677777K, telefono=789987765, polizas={187-023=DECESO}), [No, 322, 33.0], 22/07/2000]}
+{483-423=[Cliente(nombre=Lara , edad=19, dni=87677777K, telefono=655435344, polizas={483-423=MOTO}), [8976UIK, Jsjsa, Jksajkas], 29/05/2009]}

@@ -1,6 +1,7 @@
 package org.practicatrim2
 
 import org.practicatrim2.Clientes.GestionClientes
+import org.practicatrim2.Menus.MenuInicio
 import org.practicatrim2.Polizas.Poliza
 import org.practicatrim2.Polizas.PolizaMoto
 
@@ -18,31 +19,14 @@ fun String.capitalizar(): String{
 
 fun main() {
 
+    // Se cargan los archivos guardados antes de empezar
     val gestionClientes = GestionClientes()
-    val polizaMoto= PolizaMoto(gestionClientes)
+    val polizas = PolizaMoto(gestionClientes) //solo es para llamar a la funcion
     gestionClientes.guardarClientesDelArchivo()
-    polizaMoto.guardarPolizasDelArchivo()
-//    polizaMoto.grabarPoliza()
+    polizas.guardarPolizasDelArchivo()
 
-   polizaMoto.mostrarPoliza("806-051")
+    GestionConsola.inicio()
 
 
 }
 
-
-
-fun respuestaUsuario(){
-    while (true){
-        try {
-            val usuario = readln().lowercase()
-            if (usuario.isNotBlank()){
-
-            }else{
-                throw Exception()
-            }
-        }catch (e: Exception){
-            println("Opción incorrecta indique si es cliente o empleado porfavor.")
-        }
-    }
-
-}

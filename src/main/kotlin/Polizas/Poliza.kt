@@ -7,14 +7,19 @@ import java.io.FileWriter
 
 abstract class Poliza {
 
-    //Resguardo de las pólizas. Cuando empiza el programa se cargan las pólizas del archivo a la lista para operar más fácilmente
-    private val polizas = mutableListOf<MutableMap<String, List<Any>>>()
+
+    companion object {
+        //Resguardo de las pólizas. Cuando empiza el programa se cargan las pólizas del archivo a la lista para operar más fácilmente
+        val polizas = mutableListOf<MutableMap<String, List<Any>>>()
+
+        private val path = "src/main/kotlin/baseDatos/polizas.txt"
+        private val archivo = File(path)
+    }
+
     val poliza = mutableMapOf<String, List<Any>>()
-    private val path = "src/main/kotlin/baseDatos/polizas.txt"
-    private val archivo = File(path)
 
     abstract fun grabarPoliza()
-    abstract fun datosEspecificos() : MutableList<Any>
+    abstract fun datosEspecificos(): MutableList<Any>
 
     /**
      * Genera un ID único para una póliza.
@@ -23,16 +28,16 @@ abstract class Poliza {
      *
      * @return El ID único generado.
      */
-    fun generarId(): String{
-        var id : String
+    fun generarId(): String {
+        var id: String
 
         do {
-            val numero1 = String.format("%03d" ,(1..999).random())
-            val numero2 = String.format("%03d" ,(1..999).random())
+            val numero1 = String.format("%03d", (1..999).random())
+            val numero2 = String.format("%03d", (1..999).random())
 
             id = "$numero1-$numero2"
 
-        }while (poliza.containsKey(id))
+        } while (poliza.containsKey(id))
 
         return id
     }
@@ -55,37 +60,48 @@ abstract class Poliza {
      * @param id El ID de la póliza que se quiere buscar.
      * @return El mapa que contiene la información de la póliza si se encuentra, o null si no se encuentra.
      */
-    fun buscarPoliza(id: String): MutableMap<String, List<Any>>? = polizas.find { it.keys.contains(id) }
+    fun buscarPoliza(dni: String): List<MutableMap<String, List<Any>>>? = polizas.filter { it.values.first().contains(dni) }
 
     /**
      * Muestra la información de una póliza identificada por su ID.
      * @param id El ID de la póliza que se quiere mostrar.
      */
-    fun mostrarPoliza(id: String) {
-        val poliza = buscarPoliza(id)
+    fun mostrarPoliza(dni: String) {
+        val polizas = buscarPoliza(dni)
 
-        if (poliza != null){
 
-            println("Id Póliza: $id")
-            println("Datos póliza: ")
+        if (polizas != null) {
+            for (poliza in polizas){
 
-            val datos = poliza.values.first()
+                val id = poliza.keys.first()
 
-            println("dni contratador: ${datos[0]}")
 
-            when(datos[3]){
-                "MOTO" -> println("TipoPoliza: Moto")
-                "COCHE" -> println("TipoPoliza: Coche")
-                "VIDA" -> println("TipoPoliza: Vida")
-                "DECESO" -> println("TipoPoliza: Deceso")
-                "Hogar" -> println("TipoPoliza: Hogar")
+                println("Datos póliza: ")
+
+                val datos = poliza.values.first()
+
+                when (datos[3]) {
+                    "MOTO" -> println("TipoPoliza: Moto")
+                    "COCHE" -> println("TipoPoliza: Coche")
+                    "VIDA" -> println("TipoPoliza: Vida")
+                    "DECESO" -> println("TipoPoliza: Deceso")
+                    "Hogar" -> println("TipoPoliza: Hogar")
+                }
+
+                println("Id Póliza: $id")
+                println("dni contratador: ${datos[0]}")
+                println(datos[1])
+                println("Fecha alta: ${datos[2]}")
+
+                println()
+                println("----------------------------------")
+                println()
             }
 
-            println(datos[1])
-            println("Fecha alta: ${datos[2]}")
 
-        }else{
-            println("No se encontro la poliza con id: $id")
+
+        } else {
+            println("No se encontro la poliza con id: $dni")
         }
     }
 
@@ -95,7 +111,7 @@ abstract class Poliza {
      * @param poliza El mapa de datos que representa la póliza a guardar. Debe contener la información de la póliza
      * en el formato especificado.
      */
-    fun guardarPoliza(poliza:  MutableMap<String, List<Any>>){
+    fun guardarPoliza(poliza: MutableMap<String, List<Any>>) {
 
         try {
 
@@ -103,13 +119,13 @@ abstract class Poliza {
 
             val fileWriter = FileWriter(archivo, true)
             val bufferedWriter = BufferedWriter(fileWriter)
-            bufferedWriter.write(poliza.toString ())
+            bufferedWriter.write(poliza.toString())
             bufferedWriter.newLine()
             bufferedWriter.close()
 
             println("Polizas guardada correctamente")
 
-        }catch (e: Exception){
+        } catch (e: Exception) {
             println("***Error***")
         }
 
@@ -142,25 +158,26 @@ abstract class Poliza {
     private fun deStringAPoliza(linea: String): MutableMap<String, List<Any>>? {
 
         val linea = linea.substring(1, linea.length - 1) // quita corchetes
-        val partes = linea.split("=", limit =  2)
+        val partes = linea.split("=", limit = 2)
         val idPoliza = partes[0]
         val datosStr = partes[1]
 
-       val datos = mutableListOf<Any>()
+        val datos = mutableListOf<Any>()
 
-       val partesDatos = datosStr.substring(1, datosStr.length - 1).split(", ")
-        if (partesDatos.size >= 5){
+        val partesDatos = datosStr.substring(1, datosStr.length - 1).split(", ")
+        if (partesDatos.size >= 5) {
             val dni = partesDatos[2].substringAfter("dni=").trim()
-            val polizasStr = partesDatos[4].substringAfter("polizas=").substringAfter("{").substringBefore("}").split("=")
-            val tipoPoliza =  polizasStr[1]
-            val datosEspecificos = partesDatos.subList(5, partesDatos.size -1)
+            val polizasStr =
+                partesDatos[4].substringAfter("polizas=").substringAfter("{").substringBefore("}").split("=")
+            val tipoPoliza = polizasStr[1]
+            val datosEspecificos = partesDatos.subList(5, partesDatos.size - 1)
             val fecha = partesDatos.last()
 
             datos.add(dni)
             datos.add(datosEspecificos)
             datos.add(fecha)
             datos.add(tipoPoliza)
-        }else{
+        } else {
             print("cuac")
         }
 
