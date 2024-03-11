@@ -50,24 +50,43 @@ abstract class Poliza {
 
     }
 
-    ///
+    /**
+     * Busca una póliza por su ID en la lista de pólizas.
+     * @param id El ID de la póliza que se quiere buscar.
+     * @return El mapa que contiene la información de la póliza si se encuentra, o null si no se encuentra.
+     */
     fun buscarPoliza(id: String): MutableMap<String, List<Any>>? = polizas.find { it.keys.contains(id) }
 
-    //
+    /**
+     * Muestra la información de una póliza identificada por su ID.
+     * @param id El ID de la póliza que se quiere mostrar.
+     */
     fun mostrarPoliza(id: String) {
         val poliza = buscarPoliza(id)
 
         if (poliza != null){
+
             println("Id Póliza: $id")
             println("Datos póliza: ")
+
             val datos = poliza.values.first()
+
             println("dni contratador: ${datos[0]}")
-            println("Datos poliza:")
+
+            when(datos[3]){
+                "MOTO" -> println("TipoPoliza: Moto")
+                "COCHE" -> println("TipoPoliza: Coche")
+                "VIDA" -> println("TipoPoliza: Vida")
+                "DECESO" -> println("TipoPoliza: Deceso")
+                "Hogar" -> println("TipoPoliza: Hogar")
+            }
+
             println(datos[1])
+            println("Fecha alta: ${datos[2]}")
+
         }else{
             println("No se encontro la poliza con id: $id")
         }
-
     }
 
     /**
@@ -116,11 +135,9 @@ abstract class Poliza {
     }
 
     /**
-     * Convierte una cadena de texto en el formato de una póliza a un mapa de datos.
-     *
-     * @param linea La cadena de texto que representa una póliza en el formato especificado.
-     * @return Un mapa mutable de datos que representa la póliza, donde la clave es el ID de la póliza y el valor es una lista de datos asociados.
-     * Si la cadena no tiene el formato esperado, se retorna null.
+     * Analiza una cadena que representa una póliza y la convierte en un mapa con el ID de la póliza como clave y una lista de datos como valor.
+     * @param linea La cadena que representa la póliza.
+     * @return Un mapa que contiene el ID de la póliza como clave y una lista de datos como valor, o null si falla el análisis.
      */
     private fun deStringAPoliza(linea: String): MutableMap<String, List<Any>>? {
 
@@ -128,16 +145,21 @@ abstract class Poliza {
         val partes = linea.split("=", limit =  2)
         val idPoliza = partes[0]
         val datosStr = partes[1]
-//
+
        val datos = mutableListOf<Any>()
-//
+
        val partesDatos = datosStr.substring(1, datosStr.length - 1).split(", ")
-        if (partesDatos.size > 6){
-            val dni = partes[2].substringAfter("dni=").trim() /////////////////
-            val datosEspecificos = partesDatos.subList(5, partesDatos.size)
+        if (partesDatos.size >= 5){
+            val dni = partesDatos[2].substringAfter("dni=").trim()
+            val polizasStr = partesDatos[4].substringAfter("polizas=").substringAfter("{").substringBefore("}").split("=")
+            val tipoPoliza =  polizasStr[1]
+            val datosEspecificos = partesDatos.subList(5, partesDatos.size -1)
+            val fecha = partesDatos.last()
 
             datos.add(dni)
             datos.add(datosEspecificos)
+            datos.add(fecha)
+            datos.add(tipoPoliza)
         }else{
             print("cuac")
         }
@@ -146,13 +168,6 @@ abstract class Poliza {
         poliza[idPoliza] = datos
 
         return poliza
-
-
     }
-
-
-
-
-
 
 }
