@@ -92,3 +92,6 @@ Este conjunto de preguntas está diseñado para ayudarte a reflexionar sobre có
 #### **Criterio global 9: Genéricos**
 - **(6.f)**: Muestra ejemplos de tu código sobre cómo has implementado una clase con genéricos. ¿Qué beneficio has obtenido?
 
+  He implementado el genérico en la interfaz de menú, en el método de respuesta para que según el tipo de menú puede variar el tipo de dato de la respuesta. El genérico le proporciona flexibilidad al código, ya que se puede usar cualquier tipo de dato.
+    https://github.com/IES-Rafael-Alberti/prog-practica-libre-trimestre-2-lnarote777/blob/4aab34122632a43d4916b3348ba24a1fb4ec845a/src/main/kotlin/Menus/Menu.kt#L3-L8
+
