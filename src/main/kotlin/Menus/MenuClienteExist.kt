@@ -1,15 +1,12 @@
 package org.practicatrim2.Menus
 
+import org.practicatrim2.Consola
 
 
 class MenuClienteExist: Menu<Int> {
     override fun menu() {
-        println("----Bienvenido de nuevo, elija  una opción:")
-        println("\t1. Contratar nueva póliza")
-        println("\t2. Darse de baja de Ocaso")
-        println("\t3. Ver pólizas contratadas")
-        println("\t4. Ver estado cliente")
-        println("\t0. Atrás")
+        val menu = "----Bienvenido de nuevo, elija  una opción:\n\t1. Contratar nueva póliza\n\t2. Darse de baja de Ocaso\n\t3. Ver pólizas contratadas\n\t4. Ver estado cliente\n\t0. Atrás"
+        Consola().mostrarInfo(menu)
     }
 
     override fun respuesta(): Int {

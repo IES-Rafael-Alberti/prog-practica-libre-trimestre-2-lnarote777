@@ -7,7 +7,7 @@ import org.practicatrim2.Menus.MenuPolizas
 import org.practicatrim2.Polizas.*
 
 
-object GestionConsola {
+object GestionMenu {
 
     var terminar = false
     var atras = false
@@ -75,6 +75,7 @@ object GestionConsola {
 
             }catch (e: Exception){
                 print(e)
+                //consola.mostrarInfo(e)
             }
 
 

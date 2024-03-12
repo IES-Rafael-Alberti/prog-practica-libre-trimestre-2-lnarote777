@@ -1,11 +1,11 @@
 package org.practicatrim2.Menus
 
+import org.practicatrim2.Consola
+
 class MenuInicio: Menu<Int> {
     override fun menu() {
-        println("---------Bienvenido al portal de ocaso -----------")
-        println("\t1. Cliente existente")
-        println("\t2. Nuevo cliente")
-        println("\t0. Salir")
+        val menu = "--------Bienvenido al portal de ocaso -----------\n\t1. Cliente existente\n\t2. Nuevo cliente\n\t0. Salir"
+        Consola().mostrarInfo(menu)
     }
 
     override fun respuesta(): Int {

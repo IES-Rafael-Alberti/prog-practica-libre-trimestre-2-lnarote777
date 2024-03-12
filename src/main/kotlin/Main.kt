@@ -1,8 +1,6 @@
 package org.practicatrim2
 
 import org.practicatrim2.Clientes.GestionClientes
-import org.practicatrim2.Menus.MenuInicio
-import org.practicatrim2.Polizas.Poliza
 import org.practicatrim2.Polizas.PolizaMoto
 
 
@@ -25,7 +23,7 @@ fun main() {
     gestionClientes.guardarClientesDelArchivo()
     polizas.guardarPolizasDelArchivo()
 
-    GestionConsola.inicio()
+    GestionMenu.inicio()
 
 
 }

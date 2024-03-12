@@ -1,5 +1,6 @@
 package org.practicatrim2.Clientes
 
+import org.practicatrim2.Consola
 import org.practicatrim2.Polizas.TipoPoliza
 import org.practicatrim2.capitalizar
 import java.io.BufferedWriter
@@ -206,7 +207,7 @@ class GestionClientes {
             if (edad < 18){
                 println("Debe ser mayor de edad para contratar una póliza.")
             }else if (edad == null){
-                println(mensaje)
+                Consola().mostrarInfo(mensaje)
             }else{
                 break
             }
