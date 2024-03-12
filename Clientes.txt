@@ -1,1 +1,0 @@
-Cliente(nombre=Lara, dni=32089777e, telefono=[8983472384], polizas={})
