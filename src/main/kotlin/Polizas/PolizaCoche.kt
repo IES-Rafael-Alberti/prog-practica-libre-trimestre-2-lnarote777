@@ -3,7 +3,7 @@ package org.practicatrim2.Polizas
 import org.practicatrim2.Clientes.GestionClientes
 import org.practicatrim2.capitalizar
 
-class PolizaCoche(val gestor : GestionClientes): Poliza() {
+class PolizaCoche( gestor : GestionClientes): Poliza(gestor) {
 
     /**
      * Registra una nueva póliza en el sistema.

@@ -1,11 +1,12 @@
 package org.practicatrim2.Polizas
 
+import org.practicatrim2.Clientes.GestionClientes
 import org.practicatrim2.Consola
 import java.io.BufferedWriter
 import java.io.File
 import java.io.FileWriter
 
-abstract class Poliza {
+abstract class Poliza(val gestor: GestionClientes) {
 
 
     companion object {
@@ -45,7 +46,7 @@ abstract class Poliza {
 
     fun generarFechaAlta(): String {
 
-        //Genera una fecha aleatoria
+        //Genera una fecha aleatoria para los clientes ya guardados
         val dia = String.format("%02d", (1..31).random())
         val mes = String.format("%02d", (1..12).random())
         val anio = (1980..2023).random().toString()

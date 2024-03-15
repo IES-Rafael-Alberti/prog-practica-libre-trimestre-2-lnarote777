@@ -8,7 +8,7 @@ import org.practicatrim2.capitalizar
  *
  * @property gestor El gestor de clientes asociado a la póliza.
  */
-open class PolizaVida (val gestor : GestionClientes): Poliza() {
+open class PolizaVida (gestor : GestionClientes): Poliza(gestor) {
 
     /**
      * Registra una nueva póliza en el sistema.
