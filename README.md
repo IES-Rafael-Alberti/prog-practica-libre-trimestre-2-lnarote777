@@ -76,14 +76,15 @@ https://github.com/IES-Rafael-Alberti/prog-practica-libre-trimestre-2-lnarote777
 #### **Criterio global 2: Crear y llamar métodos estáticos**
 - **(4.i)**: ¿Has definido algún método/propiedad estático en tu proyecto? ¿Cuál era el objetivo y por qué consideraste que debía ser estático en lugar de un método/propiedad de instancia?
 
-Si. En las clases Poliza y GestionClientes.
-https://github.com/IES-Rafael-Alberti/prog-practica-libre-trimestre-2-lnarote777/blob/f5d4645af0dc55e1dc3d0e2e09817871c9b31522/src/main/kotlin/Polizas/Poliza.kt#L9-L19
-El objetivo de esto es porque creo dos instancias de esas dos clases. Al crearlas necesito tener una lista a modo de base de datos que inicio al comenzar el prorama por loque al tener dos instancias de cada una no se me guardaba como lo necesitaba. De esta manera solo se crea una vez la lista con todos los datos guardados.
+ Si. En las clases Poliza y GestionClientes.
+ https://github.com/IES-Rafael-Alberti/prog-practica-libre-trimestre-2-lnarote777/blob/f5d4645af0dc55e1dc3d0e2e09817871c9b31522/src/main/kotlin/Polizas/Poliza.kt#L9-L19
+ https://github.com/IES-Rafael-Alberti/prog-practica-libre-trimestre-2-lnarote777/blob/fa278d5715064a75dd0c0eb6942cb16cf3b83366/src/main/kotlin/Clientes/GestionClientes.kt#L13-L24
+ El objetivo de esto era asegurar  que solo existiera una instancia compartida de la lista de base de datos (polizas) en lugar de que cada instancia de Poliza y GestionClientes tuviera su propia lista.
   
 - **(2.e)**: ¿En qué parte del código se llama a un método estático o se utiliza la propiedad estática?
 
-  https://github.com/IES-Rafael-Alberti/prog-practica-libre-trimestre-2-lnarote777/blob/88c7278172393587ac223848f07a74dcd8a94656/src/main/kotlin/Polizas/Poliza.kt#L64
-  En esta funcion se utiliza la propiedad polizas, la cual se encuentra en el companion object.
+  https://github.com/IES-Rafael-Alberti/prog-practica-libre-trimestre-2-lnarote777/blob/fa278d5715064a75dd0c0eb6942cb16cf3b83366/src/main/kotlin/Polizas/Poliza.kt#L105-L129
+  En la función guardarPoliza de la clase Poliza, se utiliza la propiedad estática polizas que se encuentra dentro del companion object. Esta propiedad se utiliza para agregar la póliza recién creada a la lista de pólizas existente en la clase Poliza y añadirla al archivo de polizas.
 
 #### **Criterio global 3: Uso de entornos**
 - **(2.i)**: ¿Cómo utilizaste el IDE para el desarrollo de tu proyecto? Describe el proceso de creación, compilación, y prueba de tu programa.
@@ -93,9 +94,15 @@ El objetivo de esto es porque creo dos instancias de esas dos clases. Al crearla
 #### **Criterio global 4: Definir clases y su contenido**
 - **(4.b, 4.c, 4.d, 4.g)**: Explica sobre un ejemplo de tu código, cómo definiste las clases en tu proyecto, es decir como identificaste las de propiedades, métodos y constructores y modificadores del control de acceso a métodos y propiedades, para representar al objeto del mundo real. ¿Cómo contribuyen estas clases a la solución del problema que tu aplicación aborda?
 
-  en este proyecto se definen diferentes tipos de clases,como data class, enum class y abstract class
-  La data class Cliente ha sido usada para guardar los datos de un cliente de forma ordenada.
-  https://github.com/IES-Rafael-Alberti/prog-practica-libre-trimestre-2-lnarote777/blob/4382b432616d06b1b0029131b70ab1c492823b01/src/main/kotlin/Clientes/Cliente.kt#L5
+  En este proyecto se definen diferentes tipos de clases,como data class, enum class y abstract class
+  
+   - Data class Cliente: usada para guardar los datos de un cliente de forma ordenada.
+   https://github.com/IES-Rafael-Alberti/prog-practica-libre-trimestre-2-lnarote777/blob/4382b432616d06b1b0029131b70ab1c492823b01/src/main/kotlin/Clientes/Cliente.kt#L5
+
+   - Enum class TipoPoliza: enumera los distintos tipos de pólizas disponibles.
+   https://github.com/IES-Rafael-Alberti/prog-practica-libre-trimestre-2-lnarote777/blob/fa278d5715064a75dd0c0eb6942cb16cf3b83366/src/main/kotlin/Polizas/TipoPoliza.kt#L2-L5
+
+  Usando estas clases de ejemplo, contribuyen significativamente a la solución del problema abordado por la aplicación, ya que proporcionan una estructura clara y coherente para representar la información de los clientes y los tipos de pólizas.
 
   
 
