@@ -108,7 +108,34 @@ https://github.com/IES-Rafael-Alberti/prog-practica-libre-trimestre-2-lnarote777
 
 #### **Criterio global 5: Herencia y uso de clases abstractas e interfaces**
 - **(4.h, 4.j, 7.a, 7.b, 7.c)**: Describe sobre tu código cómo has implementado la herencia o utilizado interfaces en tu proyecto. ¿Por qué elegiste este enfoque y cómo beneficia a la estructura de tu aplicación? ¿De qué manera has utilizado los principios SOLID para mejorar el diseño de tu proyecto? ¿Mostrando tu código, contesta a qué principios has utilizado y qué beneficio has obtenido?
-   
+
+- **Herencia y/o uso de interfaces**
+   En la herencia se ha utilizado para representar diferentes tipos de pólizas de seguro. Cada una hereda de una clase base común 'Póliza' la cual permite compartir funcionalidades y comportamientos comunes entre ellas. Con esta herencia se facilita la extensión de la aplicación.
+  Se usa la interfaz Menu para definir unos métodos comunes para los diferentes menús del proyecto.
+  Este enfoque facilita la reutilización del código , le da flexibilidad con el uso de la interfaz y una gran facilidad de mantenimiento.
+  
+-**Principios Solid**
+   -*SRP* - Principio de responsabilidad única. 
+      En este proyecto, cada clase tiene una responsabilidad clara y específica.
+      Por ejemplo, la clase GestionClientes se encarga de la gestión de clientes, mientras que las clases PolizaMoto, PolizaHogar, etc., se ocupan de la gestión de diferentes tipos de pólizas.
+      https://github.com/IES-Rafael-Alberti/prog-practica-libre-trimestre-2-lnarote777/blob/fc4e5d264fd99a6cc2ed224b878ccb8b30b3cebc/src/main/kotlin/Clientes/GestionClientes.kt#L10-L77
+      https://github.com/IES-Rafael-Alberti/prog-practica-libre-trimestre-2-lnarote777/blob/fc4e5d264fd99a6cc2ed224b878ccb8b30b3cebc/src/main/kotlin/Polizas/PolizaMoto.kt#L6-L52
+
+   -*OCP* - Principio de Abierto/Cerrado.
+      Este principio sugiere que las entidades de software deben estar abiertas para la extensión pero cerradas para la modificación.
+      En el proyecto, este principio se aplica en las clases de gestión de pólizas (PolizaMoto, PolizaHogar, etc.). Cada una de estas clases es fácilmente extensible para agregar nuevos tipos de pólizas sin modificar el código existente. Por ejemplo, si se quiere agregar una nueva póliza de salud, se puede crear una nueva clase PolizaSalud sin modificar las clases existentes.
+
+   -*LSP* - Principio de Sustitución de Liskov.
+      Este principio establece que los objetos de un programa deben ser reemplazables por instancias de sus subtipos sin alterar la corrección del programa.
+      En el proyecto, la herencia se utiliza de manera efectiva para representar diferentes tipos de pólizas (PolizaMoto, PolizaHogar, etc.) que comparten ciertas características y comportamientos comunes pero también tienen comportamientos específicos.
+      https://github.com/IES-Rafael-Alberti/prog-practica-libre-trimestre-2-lnarote777/blob/fc4e5d264fd99a6cc2ed224b878ccb8b30b3cebc/src/main/kotlin/Polizas/Poliza.kt#L9-L25
+      https://github.com/IES-Rafael-Alberti/prog-practica-libre-trimestre-2-lnarote777/blob/fc4e5d264fd99a6cc2ed224b878ccb8b30b3cebc/src/main/kotlin/Polizas/PolizaHogar.kt#L10-L61
+
+   -*ISP* - Principio de Segregación de Interfaces.
+      Este principio sugiere que los clientes no deben verse obligados a depender de interfaces que no utilizan.
+      En el proyecto, se utilizan interfaces como Menu para definir comportamientos comunes a diferentes tipos de menús. Esto permite que los menús específicos implementen solo los métodos que necesitan, evitando la dependencia de funcionalidades no utilizadas.
+      https://github.com/IES-Rafael-Alberti/prog-practica-libre-trimestre-2-lnarote777/blob/fc4e5d264fd99a6cc2ed224b878ccb8b30b3cebc/src/main/kotlin/Menus/Menu.kt#L6-L13
+      https://github.com/IES-Rafael-Alberti/prog-practica-libre-trimestre-2-lnarote777/blob/fc4e5d264fd99a6cc2ed224b878ccb8b30b3cebc/src/main/kotlin/Menus/MenuClienteExist.kt#L3-L18
 
 #### **Criterio global 6: Diseño de jerarquía de clases**
 - **(7.d, 7.e, 7.f, 7.g)**: Presenta la jerarquía de clases que diseñaste. ¿Cómo probaste y depuraste esta jerarquía para asegurar su correcto funcionamiento? ¿Qué tipo de herencia has utilizado: Especificación, Especialización, Extensión, Construcción?
