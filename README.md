@@ -159,7 +159,7 @@ https://github.com/IES-Rafael-Alberti/prog-practica-libre-trimestre-2-lnarote777
 - **(7.h)**: Muestra ejemplos de cómo has documentado y comentado tu código. ¿Que herramientas has utilizado? ¿Cómo aseguras que tu documentación aporte valor para la comprensión, mantenimiento y depuración del código?
 
   https://github.com/IES-Rafael-Alberti/prog-practica-libre-trimestre-2-lnarote777/blob/9d64725295b46c49e7a27a5651d810034f2a5fbe/src/main/kotlin/Clientes/GestionClientes.kt#L86-L94
-  El código ha sido documentado con la documentación correspondiente de Kotlin(KDoc). Como herramienta esterna para facilitar y aligerar este proceso he utilizado la IA de ChatGpt.
+  El código ha sido documentado con la documentación correspondiente de Kotlin(KDoc). Como herramienta externa para facilitar y aligerar este proceso he utilizado la IA de ChatGpt.
   La documentación proporciona una pequeña descripción del funcionamiento de cada función y/o clase, además de comentarios adicionales en los puntos que considero que deben ser aclarados.
 
 #### **Criterio global 9: Genéricos**
