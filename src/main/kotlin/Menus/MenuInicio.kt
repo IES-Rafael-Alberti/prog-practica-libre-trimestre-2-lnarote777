@@ -7,6 +7,11 @@ class MenuInicio: Menu<Int> {
         consola.mostrarInfo(menu)
     }
 
+    /**
+     * Obtiene la respuesta del usuario después de mostrar el menú.
+     *
+     * @return La opción seleccionada por el usuario.
+     */
     override fun respuesta(): Int {
         print("--> ")
         val opcion = consola.pedirDatos().toInt()

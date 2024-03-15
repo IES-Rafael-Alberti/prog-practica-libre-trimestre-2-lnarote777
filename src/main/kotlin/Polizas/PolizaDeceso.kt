@@ -2,6 +2,7 @@ package org.practicatrim2.Polizas
 
 import org.practicatrim2.Clientes.GestionClientes
 
+
 class PolizaDeceso ( gestor : GestionClientes): PolizaVida(gestor) {
 
     /**

@@ -6,6 +6,10 @@ import java.io.BufferedWriter
 import java.io.File
 import java.io.FileWriter
 
+/**
+ * Clase abstracta que define el comportamiento general de una póliza de seguros.
+ * @property gestor El gestor de clientes utilizado para la interacción con los clientes.
+ */
 abstract class Poliza(val gestor: GestionClientes) {
 
 

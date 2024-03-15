@@ -3,6 +3,10 @@ package org.practicatrim2.Polizas
 import org.practicatrim2.Clientes.GestionClientes
 import org.practicatrim2.capitalizar
 
+/**
+ * Clase que representa una póliza de seguro para una moto.
+ * @param gestor El gestor de clientes utilizado para la interacción con los clientes.
+ */
 class PolizaMoto(gestor : GestionClientes) : Poliza(gestor) {
 
     /**
