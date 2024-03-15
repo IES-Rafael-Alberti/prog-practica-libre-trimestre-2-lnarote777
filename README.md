@@ -109,13 +109,13 @@ https://github.com/IES-Rafael-Alberti/prog-practica-libre-trimestre-2-lnarote777
 #### **Criterio global 5: Herencia y uso de clases abstractas e interfaces**
 - **(4.h, 4.j, 7.a, 7.b, 7.c)**: Describe sobre tu código cómo has implementado la herencia o utilizado interfaces en tu proyecto. ¿Por qué elegiste este enfoque y cómo beneficia a la estructura de tu aplicación? ¿De qué manera has utilizado los principios SOLID para mejorar el diseño de tu proyecto? ¿Mostrando tu código, contesta a qué principios has utilizado y qué beneficio has obtenido?
 
-- **Herencia y/o uso de interfaces**
-   En la herencia se ha utilizado para representar diferentes tipos de pólizas de seguro. Cada una hereda de una clase base común 'Póliza' la cual permite compartir funcionalidades y comportamientos comunes entre ellas. Con esta herencia se facilita la extensión de la aplicación.
-  Se usa la interfaz Menu para definir unos métodos comunes para los diferentes menús del proyecto.
-  Este enfoque facilita la reutilización del código , le da flexibilidad con el uso de la interfaz y una gran facilidad de mantenimiento.
+  -**Herencia y/o uso de interfaces**
+     En la herencia se ha utilizado para representar diferentes tipos de pólizas de seguro. Cada una hereda de una clase base común 'Póliza' la cual permite compartir funcionalidades y comportamientos comunes entre ellas. Con esta herencia se facilita la extensión de la aplicación.
+     Se usa la interfaz Menu para definir unos métodos comunes para los diferentes menús del proyecto.
+     Este enfoque facilita la reutilización del código , le da flexibilidad con el uso de la interfaz y una gran facilidad de mantenimiento.
   
--**Principios Solid**
-   -*SRP* - Principio de responsabilidad única. 
+   -**Principios Solid**
+      -*SRP* - Principio de responsabilidad única. 
       En este proyecto, cada clase tiene una responsabilidad clara y específica.
       Por ejemplo, la clase GestionClientes se encarga de la gestión de clientes, mientras que las clases PolizaMoto, PolizaHogar, etc., se ocupan de la gestión de diferentes tipos de pólizas.
       https://github.com/IES-Rafael-Alberti/prog-practica-libre-trimestre-2-lnarote777/blob/fc4e5d264fd99a6cc2ed224b878ccb8b30b3cebc/src/main/kotlin/Clientes/GestionClientes.kt#L10-L77
