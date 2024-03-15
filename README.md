@@ -67,12 +67,18 @@ Este conjunto de preguntas está diseñado para ayudarte a reflexionar sobre có
 #### **Criterio global 1: Instancia objetos y hacer uso de ellos**
 - **(2.a, 2.b, 2.c, 2.d, 2.f, 2.h, 4.f, 4.a)**: Describe cómo has instanciado y utilizado objetos en tu proyecto. ¿Cómo has aplicado los constructores y pasado parámetros a los métodos? Proporciona ejemplos específicos de tu código.
 
+https://github.com/IES-Rafael-Alberti/prog-practica-libre-trimestre-2-lnarote777/blob/f5d4645af0dc55e1dc3d0e2e09817871c9b31522/src/main/kotlin/Main.kt#L19-L25
+He instanciado dos objetos de las clases GestionClientes y Polizas en el main para utilizar los mettodos que guardan los datos que ay en los archivos de clientes y polizas en una lista que usaré a lo largo del programa para facilitar las búsquedas y demás sobre las listas.
 
+También para llamar a las funciones de consola, he instanciado en las funciones que las utiliza un obketo de cosola.
+https://github.com/IES-Rafael-Alberti/prog-practica-libre-trimestre-2-lnarote777/blob/f5d4645af0dc55e1dc3d0e2e09817871c9b31522/src/main/kotlin/Polizas/Poliza.kt#L20
 
 #### **Criterio global 2: Crear y llamar métodos estáticos**
 - **(4.i)**: ¿Has definido algún método/propiedad estático en tu proyecto? ¿Cuál era el objetivo y por qué consideraste que debía ser estático en lugar de un método/propiedad de instancia?
 
-  Si. En las clases Poliza y GestionClientes. El objetivo de esto es porque creo dos instancias de esas dos clases. Al crearlas necesito tener una lista a modo de base de datos que inicio al comenzar el prorama por loque al tener dos instancias de cada una no se me guardaba como lo necesitaba. De esta manera solo se crea una vez la lista con todos los datos guardados.
+Si. En las clases Poliza y GestionClientes.
+https://github.com/IES-Rafael-Alberti/prog-practica-libre-trimestre-2-lnarote777/blob/f5d4645af0dc55e1dc3d0e2e09817871c9b31522/src/main/kotlin/Polizas/Poliza.kt#L9-L19
+El objetivo de esto es porque creo dos instancias de esas dos clases. Al crearlas necesito tener una lista a modo de base de datos que inicio al comenzar el prorama por loque al tener dos instancias de cada una no se me guardaba como lo necesitaba. De esta manera solo se crea una vez la lista con todos los datos guardados.
   
 - **(2.e)**: ¿En qué parte del código se llama a un método estático o se utiliza la propiedad estática?
 
@@ -82,7 +88,7 @@ Este conjunto de preguntas está diseñado para ayudarte a reflexionar sobre có
 #### **Criterio global 3: Uso de entornos**
 - **(2.i)**: ¿Cómo utilizaste el IDE para el desarrollo de tu proyecto? Describe el proceso de creación, compilación, y prueba de tu programa.
 
-  El IDE ha sido de gran ayuda en cuanto simplificación de código y corrección de errores de sintaxis. El modo de depuración .
+  El IDE ha sido de gran ayuda en cuanto simplificación de código y corrección de errores de sintaxis. El modo de depuración ha sido una herramienta fundamental para ejecutar mi programa paso a paso, detectar y corregir errores.
 
 #### **Criterio global 4: Definir clases y su contenido**
 - **(4.b, 4.c, 4.d, 4.g)**: Explica sobre un ejemplo de tu código, cómo definiste las clases en tu proyecto, es decir como identificaste las de propiedades, métodos y constructores y modificadores del control de acceso a métodos y propiedades, para representar al objeto del mundo real. ¿Cómo contribuyen estas clases a la solución del problema que tu aplicación aborda?
