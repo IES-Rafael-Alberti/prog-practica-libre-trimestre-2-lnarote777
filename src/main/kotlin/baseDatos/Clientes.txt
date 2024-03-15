@@ -1,2 +1,0 @@
-Cliente(nombre=Lara, edad=67, dni=87677777K, telefono=789987765, polizas={187-023=DECESO})
-Cliente(nombre=Lara, edad=19, dni=87677777K, telefono=655435344, polizas={483-423=MOTO})

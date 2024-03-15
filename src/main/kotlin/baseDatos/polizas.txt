@@ -1,3 +1,0 @@
-{080-281=[Cliente(nombre=Andres Mahindo, edad=19, dni=53586562N, telefono=644297659, polizas={080-281=COCHE}), [7648LZT, MERCEDES, CLA], 24/05/2000]}
-{187-023=[Cliente(nombre=Lara, edad=67, dni=87677777K, telefono=789987765, polizas={187-023=DECESO}), [No, 322, 33.0], 22/07/2000]}
-{483-423=[Cliente(nombre=Lara , edad=19, dni=87677777K, telefono=655435344, polizas={483-423=MOTO}), [8976UIK, Jsjsa, Jksajkas], 29/05/2009]}
