@@ -101,13 +101,18 @@ El objetivo de esto es porque creo dos instancias de esas dos clases. Al crearla
 #### **Criterio global 6: Diseño de jerarquía de clases**
 - **(7.d, 7.e, 7.f, 7.g)**: Presenta la jerarquía de clases que diseñaste. ¿Cómo probaste y depuraste esta jerarquía para asegurar su correcto funcionamiento? ¿Qué tipo de herencia has utilizado: Especificación, Especialización, Extensión, Construcción?
 
-  https://github.com/IES-Rafael-Alberti/prog-practica-libre-trimestre-2-lnarote777/blob/9d64725295b46c49e7a27a5651d810034f2a5fbe/src/main/kotlin/Polizas/PolizaCoche.kt#L6
-  He usado herencia de especificación (los distintos tipos de seguros hernedan de la clase abstracta Póliza) 
+  Para explicar la jerarquía de clases usada en este proyecto utilizare de ejemplo la clase abstracta Póliza y las distintas clases que derivan de ellas
+  https://github.com/IES-Rafael-Alberti/prog-practica-libre-trimestre-2-lnarote777/blob/2116602827d345444b8225a9386c8430944d6d74/src/main/kotlin/Polizas/Poliza.kt#L8-L10
+  https://github.com/IES-Rafael-Alberti/prog-practica-libre-trimestre-2-lnarote777/blob/2116602827d345444b8225a9386c8430944d6d74/src/main/kotlin/Polizas/PolizaCoche.kt#L5-L7
+  Además la subclase pólizaVida que hereda de póliza tambien es una clase padre para la clase poliza Deceso haciendo que esta comparta tanto los métodos de la clase póliza como los de la clase vida
+  https://github.com/IES-Rafael-Alberti/prog-practica-libre-trimestre-2-lnarote777/blob/2116602827d345444b8225a9386c8430944d6d74/src/main/kotlin/Polizas/PolizaVida.kt#L10-L12
+  https://github.com/IES-Rafael-Alberti/prog-practica-libre-trimestre-2-lnarote777/blob/2116602827d345444b8225a9386c8430944d6d74/src/main/kotlin/Polizas/PolizaDeceso.kt#L4-L6
 
 #### **Criterio global 7: Librerías de clases**
 - **(2.g, 4.k)**: Describe cualquier librería externa que hayas incorporado en tu proyecto. Explica cómo y por qué las elegiste, y cómo las incorporaste en tu proyecto. ¿Cómo extendió la funcionalidad de tu aplicación? Proporciona ejemplos específicos de su uso en tu proyecto.
 
-  No utilizo ninguna libreria externa.
+  He implementado la librería de junit para la realización del test que compruebe la funcionalidad de algunas funciones de mi código y que funcione correctamente.
+  https://github.com/IES-Rafael-Alberti/prog-practica-libre-trimestre-2-lnarote777/blob/2116602827d345444b8225a9386c8430944d6d74/src/test/kotlin/test/GestionClientesTest.kt#L2-L17
 
 #### **Criterio global 8: Documentado**
 - **(7.h)**: Muestra ejemplos de cómo has documentado y comentado tu código. ¿Que herramientas has utilizado? ¿Cómo aseguras que tu documentación aporte valor para la comprensión, mantenimiento y depuración del código?
@@ -122,4 +127,5 @@ El objetivo de esto es porque creo dos instancias de esas dos clases. Al crearla
   He implementado el genérico en la interfaz de menú, en el método de respuesta para que según el tipo de menú puede variar el tipo de dato de la respuesta. El genérico le proporciona flexibilidad al código, ya que se puede usar cualquier tipo de dato.
     https://github.com/IES-Rafael-Alberti/prog-practica-libre-trimestre-2-lnarote777/blob/4aab34122632a43d4916b3348ba24a1fb4ec845a/src/main/kotlin/Menus/Menu.kt#L3-L8
   También en la clase que gestiona la consola.
+  https://github.com/IES-Rafael-Alberti/prog-practica-libre-trimestre-2-lnarote777/blob/2116602827d345444b8225a9386c8430944d6d74/src/main/kotlin/Consola.kt#L5-L16
 
