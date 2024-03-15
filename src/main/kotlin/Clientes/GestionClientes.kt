@@ -19,6 +19,7 @@ class GestionClientes {
         private val datosClientes = mutableListOf<Cliente>()
     }
 
+    val consola = Consola<String>()
 
     val mensaje: String
         get() = "*** No puede dejar este campo en blanco ***"
@@ -112,9 +113,10 @@ class GestionClientes {
     }
 
     /**
-     * Solicita al usuario introducir el nombre completo.
-     * El nombre no puede estar en blanco.
-     * @return El nombre completo proporcionado por el usuario.
+     * Solicita al usuario que ingrese un nombre completo y lo devuelve como una cadena de texto.
+     * Si el nombre ingresado está en blanco, se solicita nuevamente al usuario hasta que se proporcione un nombre válido.
+     *
+     * @return El nombre completo ingresado por el usuario.
      */
     private fun pedirNombre(): String{
 
@@ -123,9 +125,9 @@ class GestionClientes {
         while(true){
 
             print("Nombre completo: ")
-            nombre = readln().capitalizar()
+            nombre = consola.pedirDatos().capitalizar()
             if (nombre.isBlank()) {
-                println("**Error - El nombre no puede estar en blanco**")
+                consola.mostrarInfo("**Error - El nombre no puede estar en blanco**")
             }else{
                 break
             }
@@ -135,36 +137,55 @@ class GestionClientes {
     }
 
     /**
-     * Solicita al usuario introducir el DNI.
-     * El DNI no puede estar en blanco y debe tener 9 caracteres, incluyendo 8 dígitos y una letra.
-     * @return El DNI proporcionado por el usuario.
+     * Solicita al usuario que ingrese un número de DNI y lo devuelve como una cadena de texto en mayúsculas.
+     * Se solicita al usuario que ingrese el DNI hasta que se proporcione un número válido.
+     *
+     * @return El número de DNI ingresado por el usuario.
      */
     fun pedirDni(): String{
         var dni : String
 
         while (true){
             print("DNI: ")
-            dni = readln().uppercase()
-            if (dni.isBlank()) {
-                println(mensaje)
-            }else if (dni.length != 9) {
-                println("** Error - El dni debe tener 9 caracteres**")
-            }else if (!dni.substring(0,7).all { it.isDigit() }){
-                println("*** Error - formato de DNI incorrecto ***")
-            }else if (!dni.last().isLetter()){
-                println("*** Error - formato de DNI incorrect")
-            }else{
+            dni = consola.pedirDatos().uppercase()
+
+            if (!validarDni(dni)){
                 break
             }
         }
         return dni
     }
-    
+
     /**
-     * Solicita al usuario introducir uno número de teléfono.
-     * Si no se introduce un teléfono o se produce un error, solicita al usuario que reintente.
+     * Valida un número de DNI.
      *
-     * @return Número de teléfono introducido.
+     * @param dni El número de DNI a validar.
+     * @return true si el DNI es válido, false en caso contrario.
+     */
+    fun validarDni(dni: String): Boolean {
+
+        return if (dni.isBlank()) {
+            consola.mostrarInfo(mensaje)
+            true
+        }else if (dni.length != 9) {
+            consola.mostrarInfo("** Error - El dni debe tener 9 caracteres**")
+            true
+        }else if (!dni.substring(0,7).all { it.isDigit() }){
+            consola.mostrarInfo("*** Error - formato de DNI incorrecto ***")
+            true
+        }else if (!dni.last().isLetter()){
+            consola.mostrarInfo("*** Error - formato de DNI incorrect")
+            true
+        }else{
+            false
+        }
+    }
+
+    /**
+     * Solicita al usuario que ingrese un número de teléfono y lo devuelve como un entero.
+     * Se solicita al usuario que ingrese el teléfono hasta que se proporcione un número válido.
+     *
+     * @return El número de teléfono ingresado por el usuario.
      */
     private fun pedirTelefono(): Int{
 
@@ -174,16 +195,16 @@ class GestionClientes {
 
             try {
                 print("Teléfono ** Un telefono operativo **: ")
-                telefono = readln().toIntOrNull() ?: throw Exception()
+                telefono = consola.pedirDatos().toIntOrNull() ?: throw Exception()
                 if (telefono == null){
-                    println(mensaje)
+                    consola.mostrarInfo(mensaje)
                 }else if (telefono.toString().length != 9){
-                    println("*** Error - Debe introducir un número de teléfono válido y sin prefijo. ***")
+                    consola.mostrarInfo("*** Error - Debe introducir un número de teléfono válido y sin prefijo. ***")
                 }else{
                     break
                 }
             }catch (e: Exception){
-                println("*** Error - Introduzca un número válido ***")
+                consola.mostrarInfo("*** Error - Introduzca un número válido ***")
             }
 
         }
@@ -203,11 +224,11 @@ class GestionClientes {
 
         while (true){
             print("Edad:")
-            edad = readln().toIntOrNull() ?: continue
+            edad = consola.pedirDatos().toIntOrNull() ?: continue
             if (edad < 18){
                 println("Debe ser mayor de edad para contratar una póliza.")
             }else if (edad == null){
-                Consola().mostrarInfo(mensaje)
+                consola.mostrarInfo(mensaje)
             }else{
                 break
             }

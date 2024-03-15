@@ -50,9 +50,10 @@ class PolizaMoto(val gestor : GestionClientes) : Poliza() {
     }
 
     /**
-     * Solicita al usuario introducir la matrícula de la moto a asegurar.
-     * La matrícula debe tener 7 caracteres: 4 números seguidos de 3 letras.
-     * @return La matrícula proporcionada por el usuario.
+     * Solicita al usuario que ingrese la matrícula de una moto a asegurar y la devuelve como una cadena de texto en mayúsculas.
+     * Se solicita al usuario que ingrese la matrícula hasta que se proporcione una válida.
+     *
+     * @return La matrícula de la moto ingresada por el usuario.
      */
     private fun pedirMatricula(): String{
 
@@ -60,21 +61,38 @@ class PolizaMoto(val gestor : GestionClientes) : Poliza() {
 
         while (true){
             print("Matrícula de la moto a asegurar: ")
-            matricula = readln().uppercase()
-            if (matricula.isNullOrBlank()){
+            matricula = consola.pedirDatos().uppercase()
+            if (!validarMatricula(matricula)){
                 println(gestor.mensaje)
-            }else if (matricula.length != 7){
-                println("*** Matrícula inválida. Asegurese de que tenga 7 caracteres(4 números y 3 letras) ***")
-            }else if (!matricula.substring(0,3).all { it.isDigit() }){ //Comprueba si los 4 primeros caracteres son digitos
-                println("Los primeros 4 caracteres deben ser numeros" )
-            }else if (!matricula.substring(4,6).all { it.isLetter() }){ //Comprueba si los 3 ultimos caracteres son letras
-                println("Los ultimos 3 caracteres deben ser letras")
-            }else{
-                break
             }
         }
 
         return matricula
+    }
+
+    /**
+     * Valída una matrícula de vehículo.
+     *
+     * @param matricula La matrícula a validar.
+     * @return true si la matrícula es válida, false en caso contrario.
+     */
+    private fun validarMatricula(matricula: String): Boolean{
+
+        return if (matricula.isNullOrBlank()){
+            consola.mostrarInfo(gestor.mensaje)
+            true
+        }else if (matricula.length != 7){
+            consola.mostrarInfo("*** Matrícula inválida. Asegurese de que tenga 7 caracteres(4 números y 3 letras) ***")
+            true
+        }else if (!matricula.substring(0,3).all { it.isDigit() }){ //Comprueba si los 4 primeros caracteres son digitos
+            consola.mostrarInfo("Los primeros 4 caracteres deben ser numeros" )
+            true
+        }else if (!matricula.substring(4,6).all { it.isLetter() }) { //Comprueba si los 3 ultimos caracteres son letras
+            consola.mostrarInfo("Los ultimos 3 caracteres deben ser letras")
+            true
+        }else {
+            false
+        }
     }
 
     /**
@@ -88,9 +106,9 @@ class PolizaMoto(val gestor : GestionClientes) : Poliza() {
 
         while (true){
             print("Marca: ")
-            marca = readln().capitalizar()
+            marca = consola.pedirDatos().capitalizar()
             if (marca.isNullOrBlank()){
-                println(gestor.mensaje)
+                consola.mostrarInfo(gestor.mensaje)
             }else{
                 break
             }
@@ -109,9 +127,9 @@ class PolizaMoto(val gestor : GestionClientes) : Poliza() {
 
         while (true){
             print("Modelo: ")
-            modelo = readln().capitalizar()
+            modelo = consola.pedirDatos().capitalizar()
             if (modelo.isBlank()){
-                println(gestor.mensaje)
+                consola.mostrarInfo(gestor.mensaje)
             }else{
                 break
             }

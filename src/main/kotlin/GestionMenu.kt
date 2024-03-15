@@ -6,8 +6,10 @@ import org.practicatrim2.Menus.MenuInicio
 import org.practicatrim2.Menus.MenuPolizas
 import org.practicatrim2.Polizas.*
 
-
-object GestionMenu {
+/**
+ * Objeto que gestiona el flujo de menús de la aplicación.
+ */
+object GestionMenu{
 
     var terminar = false
     var atras = false
@@ -16,9 +18,15 @@ object GestionMenu {
     val menuPolizas = MenuPolizas()
     val gestorClientes = GestionClientes()
     val poliza = PolizaMoto(gestorClientes)
+    val consola = Consola<String>()
+    val mensajeOpcion = "Opción no válida"
+    val mensajeExcepcion = "**ERROR - Error interno**"
 
-
-    fun inicio (){
+    /**
+     * Función que representa el inicio de la aplicación.
+     * Proporciona un bucle de inicio que continúa hasta que se decide terminar.
+     */
+    fun inicio(){
 
         while (!terminar){
             try {
@@ -31,23 +39,27 @@ object GestionMenu {
                         if (gestorClientes.clienteExistente(dni)){
                             menuClienteExist()
                         }else{
-                            println("Dni no encontrado. No hay ningún cliente con dni: $dni")
+                            consola.mostrarInfo("Dni no encontrado. No hay ningún cliente con dni: $dni")
                             continue
                         }
                     }
                     2 -> menuPolizas()
                     0 -> terminar = true
-                    else -> println("Opción no válida")
+                    else -> consola.mostrarInfo(mensajeOpcion)
 
                 }
             }catch (e: Exception){
-                println(e)
+                consola.mostrarInfo(mensajeExcepcion)
             }
 
         }
 
     }
 
+    /**
+     * Función que representa el menú para clientes existentes.
+     * Proporciona un bucle de menú que continúa hasta que se decide volver atrás.
+     */
     fun menuClienteExist(){
 
         while (!terminar){
@@ -71,17 +83,21 @@ object GestionMenu {
                             println(gestorClientes.buscarCliente(dni))
                         }
                     }
+                    else -> consola.mostrarInfo(mensajeOpcion)
                 }
 
             }catch (e: Exception){
-                print(e)
-                //consola.mostrarInfo(e)
+                consola.mostrarInfo(mensajeExcepcion)
             }
 
 
         }
     }
 
+    /**
+     * Función que representa el menú para la gestión de pólizas.
+     * Proporciona un bucle de menú que continúa hasta que se decide volver atrás.
+     */
     fun menuPolizas(){
         while (!atras){
             try {
@@ -95,10 +111,10 @@ object GestionMenu {
                     4 -> PolizaMoto(gestorClientes).grabarPoliza()
                     5 -> PolizaCoche(gestorClientes).grabarPoliza()
                     0 -> atras = true
-                    else -> println("Opción no válida.")
+                    else -> consola.mostrarInfo(mensajeOpcion)
                 }
             }catch (e: Exception){
-                println(e)
+                consola.mostrarInfo(mensajeExcepcion)
             }
 
         }

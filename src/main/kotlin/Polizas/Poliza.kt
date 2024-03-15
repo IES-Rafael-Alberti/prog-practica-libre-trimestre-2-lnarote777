@@ -1,6 +1,6 @@
 package org.practicatrim2.Polizas
 
-import org.practicatrim2.Clientes.Cliente
+import org.practicatrim2.Consola
 import java.io.BufferedWriter
 import java.io.File
 import java.io.FileWriter
@@ -16,6 +16,7 @@ abstract class Poliza {
         private val archivo = File(path)
     }
 
+    val consola = Consola<String>()
     val poliza = mutableMapOf<String, List<Any>>()
 
     abstract fun grabarPoliza()
@@ -69,39 +70,34 @@ abstract class Poliza {
     fun mostrarPoliza(dni: String) {
         val polizas = buscarPoliza(dni)
 
-
         if (polizas != null) {
             for (poliza in polizas){
 
                 val id = poliza.keys.first()
 
-
-                println("Datos póliza: ")
+                consola.mostrarInfo("Datos póliza: ")
 
                 val datos = poliza.values.first()
 
                 when (datos[3]) {
-                    "MOTO" -> println("TipoPoliza: Moto")
-                    "COCHE" -> println("TipoPoliza: Coche")
-                    "VIDA" -> println("TipoPoliza: Vida")
-                    "DECESO" -> println("TipoPoliza: Deceso")
-                    "Hogar" -> println("TipoPoliza: Hogar")
+                    "MOTO" -> consola.mostrarInfo("TipoPoliza: Moto")
+                    "COCHE" -> consola.mostrarInfo("TipoPoliza: Coche")
+                    "VIDA" -> consola.mostrarInfo("TipoPoliza: Vida")
+                    "DECESO" -> consola.mostrarInfo("TipoPoliza: Deceso")
+                    "Hogar" -> consola.mostrarInfo("TipoPoliza: Hogar")
                 }
 
-                println("Id Póliza: $id")
-                println("dni contratador: ${datos[0]}")
+                consola.mostrarInfo("Id Póliza: $id")
+                consola.mostrarInfo("dni contratador: ${datos[0]}")
                 println(datos[1])
-                println("Fecha alta: ${datos[2]}")
+                consola.mostrarInfo("Fecha alta: ${datos[2]}")
 
                 println()
-                println("----------------------------------")
+                consola.mostrarInfo("----------------------------------")
                 println()
             }
-
-
-
         } else {
-            println("No se encontro la poliza con id: $dni")
+            consola.mostrarInfo("No se encontro la poliza con id: $dni")
         }
     }
 
@@ -123,10 +119,10 @@ abstract class Poliza {
             bufferedWriter.newLine()
             bufferedWriter.close()
 
-            println("Polizas guardada correctamente")
+            consola.mostrarInfo("Polizas guardada correctamente")
 
         } catch (e: Exception) {
-            println("***Error***")
+            consola.mostrarInfo("***Error***")
         }
 
     }
@@ -143,7 +139,7 @@ abstract class Poliza {
             if (poliza != null) {
                 polizas.add(poliza)
             } else {
-                println("Error en el formato de la línea: $linea")
+                consola.mostrarInfo("Error en el formato de la línea: $linea")
             }
         }
 
@@ -178,7 +174,7 @@ abstract class Poliza {
             datos.add(fecha)
             datos.add(tipoPoliza)
         } else {
-            print("cuac")
+            consola.mostrarInfo("*** Error al cargar archivos ***")
         }
 
         val poliza = mutableMapOf<String, List<Any>>()

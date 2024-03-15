@@ -70,11 +70,11 @@ open class PolizaVida (val gestor : GestionClientes): Poliza() {
 
         while (true){
             print("¿Tiene problemas de salud? ")
-            salud = readln().capitalizar()
+            salud = consola.pedirDatos().capitalizar()
             if (salud.isNullOrBlank()){
-                println(gestor.mensaje)
+                consola.mostrarInfo(gestor.mensaje)
             }else if (salud != "Si" && salud != "No"){
-                println("*** Responda si o no por favor ***")
+                consola.mostrarInfo("*** Responda si o no por favor ***")
             }else{
                 break
             }
@@ -96,9 +96,9 @@ open class PolizaVida (val gestor : GestionClientes): Poliza() {
         while (true){
             try {
                 print("Introduzca su peso en Kg: ")
-                peso = readln().format(".2f").toFloatOrNull() ?: continue
+                peso = consola.pedirDatos().format(".2f").toFloatOrNull() ?: continue
                 if (peso == null){
-                    print(gestor.mensaje)
+                    consola.mostrarInfo(gestor.mensaje)
                 }else {
                     break
                 }
@@ -122,11 +122,11 @@ open class PolizaVida (val gestor : GestionClientes): Poliza() {
 
         while (true){
             print("Introduzca su altura en cm: ")
-            altura = readln().toIntOrNull() ?: continue
+            altura = consola.pedirDatos().toIntOrNull() ?: continue
             if (altura == null){
-                println(gestor.mensaje)
+                consola.mostrarInfo(gestor.mensaje)
             }else if (altura <= 0){
-                println("*** La altura no puede ser negativa")
+                consola.mostrarInfo("*** La altura no puede ser negativa")
             }else{
                 break
             }

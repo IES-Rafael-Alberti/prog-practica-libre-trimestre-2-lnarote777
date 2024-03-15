@@ -59,22 +59,39 @@ class PolizaCoche(val gestor : GestionClientes): Poliza() {
         var matricula: String
 
         while (true){
-            print("Matrícula de la moto a asegurar: ")
-            matricula = readln().uppercase()
-            if (matricula.isNullOrBlank()){
-                println(gestor.mensaje)
-            }else if (matricula.length != 7){
-                println("*** Matrícula inválida. Asegurese de que tenga 7 caracteres(4 números y 3 letras) ***")
-            }else if (!matricula.substring(0,3).all { it.isDigit() }){ //Comprueba si los 4 primeros caracteres son digitos
-                println("Los primeros 4 caracteres deben ser numeros" )
-            }else if (!matricula.substring(4,6).all { it.isLetter() }){ //Comprueba si los 3 ultimos caracteres son letras
-                println("Los ultimos 3 caracteres deben ser letras")
-            }else{
+            print("Matrícula del coche a asegurar: ")
+            matricula = consola.pedirDatos().uppercase()
+            if (!validarMatricula(matricula)){
                 break
             }
         }
 
         return matricula
+    }
+
+    /**
+     * Valída una matrícula de vehículo.
+     *
+     * @param matricula La matrícula a validar.
+     * @return true si la matrícula es válida, false en caso contrario.
+     */
+    private fun validarMatricula(matricula: String): Boolean{
+
+        return if (matricula.isNullOrBlank()){
+            consola.mostrarInfo(gestor.mensaje)
+            true
+        }else if (matricula.length != 7){
+            consola.mostrarInfo("*** Matrícula inválida. Asegurese de que tenga 7 caracteres(4 números y 3 letras) ***")
+            true
+        }else if (!matricula.substring(0,3).all { it.isDigit() }){ //Comprueba si los 4 primeros caracteres son digitos
+            consola.mostrarInfo("Los primeros 4 caracteres deben ser numeros" )
+            true
+        }else if (!matricula.substring(4,6).all { it.isLetter() }) { //Comprueba si los 3 ultimos caracteres son letras
+            consola.mostrarInfo("Los ultimos 3 caracteres deben ser letras")
+            true
+        }else {
+            false
+        }
     }
 
     /**
@@ -88,9 +105,9 @@ class PolizaCoche(val gestor : GestionClientes): Poliza() {
 
         while (true){
             print("Marca: ")
-            marca = readln().capitalizar()
+            marca = consola.pedirDatos().capitalizar()
             if (marca.isNullOrBlank()){
-                println(gestor.mensaje)
+                consola.mostrarInfo(gestor.mensaje)
             }else{
                 break
             }
@@ -109,9 +126,9 @@ class PolizaCoche(val gestor : GestionClientes): Poliza() {
 
         while (true){
             print("Modelo: ")
-            modelo = readln().capitalizar()
+            modelo = consola.pedirDatos().capitalizar()
             if (modelo.isBlank()){
-                println(gestor.mensaje)
+                consola.mostrarInfo(gestor.mensaje)
             }else{
                 break
             }

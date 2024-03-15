@@ -70,9 +70,9 @@ class PolizaHogar ( val gestor: GestionClientes): Poliza() {
 
         while (true){
             print("Dirección: ")
-            direccion = readln().capitalizar()
+            direccion = consola.pedirDatos().capitalizar()
             if(direccion.isNullOrBlank()) {
-                println(gestor.mensaje)
+                consola.mostrarInfo(gestor.mensaje)
             }else{
                 break
             }
@@ -92,12 +92,12 @@ class PolizaHogar ( val gestor: GestionClientes): Poliza() {
         var nHabitaciones: Int
 
         while (true){
-            println("Número de habitaciones (Salón incluido): ")
-            nHabitaciones = readln().toIntOrNull() ?: continue
+            print("Número de habitaciones (Salón incluido): ")
+            nHabitaciones = consola.pedirDatos().toIntOrNull() ?: continue
             if (nHabitaciones <= 0){
-                println("*** El número de habitaciones no puede ser negativo ***")
+                consola.mostrarInfo("*** El número de habitaciones no puede ser negativo ***")
             }else if (nHabitaciones == null){
-                println(gestor.mensaje)
+                consola.mostrarInfo(gestor.mensaje)
             }else{
                 break
             }
@@ -120,9 +120,9 @@ class PolizaHogar ( val gestor: GestionClientes): Poliza() {
 
         while (true){
             print("Número de personas que habitan la casa: ")
-            personas = readln().toIntOrNull() ?: 0
+            personas = consola.pedirDatos().toIntOrNull() ?: 0
             if (personas < 0){
-                println("*** El numero de personas no puede ser un número negativo ***")
+                consola.mostrarInfo("*** El numero de personas no puede ser un número negativo ***")
             }else{
                 break
             }
@@ -143,12 +143,12 @@ class PolizaHogar ( val gestor: GestionClientes): Poliza() {
         var puertas: Int
 
         while (true){
-            println("Número de puertas de acceso a la vivienda: ")
-            puertas = readln().toIntOrNull() ?: continue
+            print("Número de puertas de acceso a la vivienda: ")
+            puertas = consola.pedirDatos().toIntOrNull() ?: continue
             if (puertas <= 0){
-                println("El numero de puertas no puede ser neativo ni 0")
+                consola.mostrarInfo("El numero de puertas no puede ser neativo ni 0")
             }else if (puertas == null){
-                println(gestor.mensaje)
+                consola.mostrarInfo(gestor.mensaje)
             }else{
                 break
             }
@@ -156,6 +156,5 @@ class PolizaHogar ( val gestor: GestionClientes): Poliza() {
 
         return puertas
     }
-
 
 }
