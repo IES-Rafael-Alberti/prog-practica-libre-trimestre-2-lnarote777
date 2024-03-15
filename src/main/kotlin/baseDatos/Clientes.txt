@@ -1,0 +1,3 @@
+Cliente(nombre=Antonio Rodriguez, edad=23, dni=54089761U, telefono=786542354, polizas={361-399=DECESO})
+Cliente(nombre=Jose Luis Aranda, edad=59, dni=36900755E, telefono=678996351, polizas={454-858=HOGAR})
+Cliente(nombre=Juan Jose Triares, edad=99, dni=12345678D, telefono=123456789, polizas={676-132=HOGAR})Cliente(nombre=Eloy Corral, edad=45, dni=32666549L, telefono=789328788, polizas={511-047=MOTO})

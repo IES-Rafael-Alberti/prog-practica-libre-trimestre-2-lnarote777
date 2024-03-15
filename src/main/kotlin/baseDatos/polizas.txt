@@ -1,0 +1,5 @@
+{361-399=[Cliente(nombre=Antonio Rodriguez, edad=23, dni=54089761U, telefono=786542354, polizas={361-399=DECESO}), [No, 189, 70.5], 25/09/2000]}
+{454-858=[Cliente(nombre=Jose Luis Aranda, edad=59, dni=36900755E, telefono=678996351, polizas={454-858=HOGAR}), [C/ Pinares 15, 6, 4, 1], 22/02/2019]}
+{676-132=[Cliente(nombre=Pito, edad=99, dni=12345678D, telefono=123456789, polizas={676-132=HOGAR}), [Asd, 2, 0, 1], 05/09/2016]}
+{626-571=[Cliente(nombre=A, edad=23, dni=12345678F, telefono=123456789, polizas={626-571=DECESO}), [Si, 200, 90.0], 10/06/2020]}
+{511-047=[Cliente(nombre=Eloy Corral, edad=45, dni=32666549L, telefono=789328788, polizas={511-047=MOTO}), [7865HJN, Kawasaki, Ninja 400], 01/03/1984]}

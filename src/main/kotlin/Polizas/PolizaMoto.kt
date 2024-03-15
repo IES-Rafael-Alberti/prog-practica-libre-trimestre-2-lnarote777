@@ -63,7 +63,7 @@ class PolizaMoto(gestor : GestionClientes) : Poliza(gestor) {
             print("Matrícula de la moto a asegurar: ")
             matricula = consola.pedirDatos().uppercase()
             if (!validarMatricula(matricula)){
-                println(gestor.mensaje)
+                break
             }
         }
 

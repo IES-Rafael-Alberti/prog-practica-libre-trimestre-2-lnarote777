@@ -146,7 +146,7 @@ class PolizaHogar ( gestor: GestionClientes): Poliza(gestor) {
             print("Número de puertas de acceso a la vivienda: ")
             puertas = consola.pedirDatos().toIntOrNull() ?: continue
             if (puertas <= 0){
-                consola.mostrarInfo("El numero de puertas no puede ser neativo ni 0")
+                consola.mostrarInfo("El numero de puertas no puede ser negativo ni 0")
             }else if (puertas == null){
                 consola.mostrarInfo(gestor.mensaje)
             }else{

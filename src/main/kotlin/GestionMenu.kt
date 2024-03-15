@@ -12,7 +12,6 @@ import org.practicatrim2.Polizas.*
 object GestionMenu{
 
     var terminar = false
-    var atras = false
     val menuInicio = MenuInicio()
     val menuClienteExist = MenuClienteExist()
     val menuPolizas = MenuPolizas()
@@ -20,7 +19,6 @@ object GestionMenu{
     val poliza = PolizaMoto(gestorClientes)
     val consola = Consola<String>()
     val mensajeOpcion = "Opción no válida"
-    val mensajeExcepcion = "**ERROR - Error interno**"
 
     /**
      * Función que representa el inicio de la aplicación.
@@ -49,7 +47,7 @@ object GestionMenu{
 
                 }
             }catch (e: Exception){
-                consola.mostrarInfo(mensajeExcepcion)
+                consola.mostrarInfo(mensajeOpcion)
             }
 
         }
@@ -61,8 +59,8 @@ object GestionMenu{
      * Proporciona un bucle de menú que continúa hasta que se decide volver atrás.
      */
     fun menuClienteExist(){
-
-        while (!terminar){
+        var atras = false
+        while (!atras){
             try {
                 menuClienteExist.menu()
                 val opcion = menuClienteExist.respuesta()
@@ -83,11 +81,12 @@ object GestionMenu{
                             println(gestorClientes.buscarCliente(dni))
                         }
                     }
+                    0 -> atras = true
                     else -> consola.mostrarInfo(mensajeOpcion)
                 }
 
             }catch (e: Exception){
-                consola.mostrarInfo(mensajeExcepcion)
+                consola.mostrarInfo(mensajeOpcion)
             }
 
 
@@ -99,6 +98,7 @@ object GestionMenu{
      * Proporciona un bucle de menú que continúa hasta que se decide volver atrás.
      */
     fun menuPolizas(){
+        var atras = false
         while (!atras){
             try {
                 menuPolizas.menu()
@@ -114,7 +114,7 @@ object GestionMenu{
                     else -> consola.mostrarInfo(mensajeOpcion)
                 }
             }catch (e: Exception){
-                consola.mostrarInfo(mensajeExcepcion)
+                consola.mostrarInfo(mensajeOpcion)
             }
 
         }
