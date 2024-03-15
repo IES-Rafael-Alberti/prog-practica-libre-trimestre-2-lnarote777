@@ -7,7 +7,10 @@ import java.io.BufferedWriter
 import java.io.File
 import java.io.FileWriter
 
-
+/**
+ * Clase para gestionar clientes.
+ * Permite añadir, dar de baja y buscar clientes, así como realizar operaciones de validación y manipulación de archivos.
+ */
 class GestionClientes {
 
 
@@ -15,7 +18,7 @@ class GestionClientes {
         private val path = "src/main/kotlin/baseDatos/Clientes.txt"
         private val archivo = File(path)
 
-        //Resguardo de los clientes. Cuando empiza el programa se cargan los clientes del archivo a la lista para operar más fácilmente
+        //Resguardo de los clientes. Cuando empieza el programa se cargan los clientes del archivo a la lista para operar más fácilmente
         private val datosClientes = mutableListOf<Cliente>()
     }
 
@@ -68,19 +71,6 @@ class GestionClientes {
         }catch (e: Exception){
             println("*** Error Interno ***")
         }
-
-    }
-
-    /**
-     * Muestra un listado de todos los clientes registrados en el archivo de registro.
-     * Los clientes se muestran uno por uno en la consola.
-     */
-    fun mostrarCliente(){
-
-        val datosClientes = guardarClientesDelArchivo()
-
-        println("LISTADO CLIENTES")
-        datosClientes.forEach { println(it) }
 
     }
 
