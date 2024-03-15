@@ -70,7 +70,7 @@ Este conjunto de preguntas está diseñado para ayudarte a reflexionar sobre có
 https://github.com/IES-Rafael-Alberti/prog-practica-libre-trimestre-2-lnarote777/blob/f5d4645af0dc55e1dc3d0e2e09817871c9b31522/src/main/kotlin/Main.kt#L19-L25
 He instanciado dos objetos de las clases GestionClientes y Polizas en el main para utilizar los mettodos que guardan los datos que ay en los archivos de clientes y polizas en una lista que usaré a lo largo del programa para facilitar las búsquedas y demás sobre las listas.
 
-También para llamar a las funciones de consola, he instanciado en las funciones que las utiliza un obketo de cosola.
+También para llamar a las funciones de consola, he instanciado en las funciones que las utiliza un objeto de cosola.
 https://github.com/IES-Rafael-Alberti/prog-practica-libre-trimestre-2-lnarote777/blob/f5d4645af0dc55e1dc3d0e2e09817871c9b31522/src/main/kotlin/Polizas/Poliza.kt#L20
 
 #### **Criterio global 2: Crear y llamar métodos estáticos**
