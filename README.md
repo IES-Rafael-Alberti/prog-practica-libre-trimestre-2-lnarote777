@@ -92,6 +92,11 @@ El objetivo de esto es porque creo dos instancias de esas dos clases. Al crearla
 
 #### **Criterio global 4: Definir clases y su contenido**
 - **(4.b, 4.c, 4.d, 4.g)**: Explica sobre un ejemplo de tu código, cómo definiste las clases en tu proyecto, es decir como identificaste las de propiedades, métodos y constructores y modificadores del control de acceso a métodos y propiedades, para representar al objeto del mundo real. ¿Cómo contribuyen estas clases a la solución del problema que tu aplicación aborda?
+
+  en este proyecto se definen diferentes tipos de clases,como data class, enum class y abstract class
+  La data class Cliente ha sido usada para guardar los datos de un cliente de forma ordenada.
+  https://github.com/IES-Rafael-Alberti/prog-practica-libre-trimestre-2-lnarote777/blob/4382b432616d06b1b0029131b70ab1c492823b01/src/main/kotlin/Clientes/Cliente.kt#L5
+
   
 
 #### **Criterio global 5: Herencia y uso de clases abstractas e interfaces**
@@ -107,6 +112,8 @@ El objetivo de esto es porque creo dos instancias de esas dos clases. Al crearla
   Además la subclase pólizaVida que hereda de póliza tambien es una clase padre para la clase poliza Deceso haciendo que esta comparta tanto los métodos de la clase póliza como los de la clase vida
   https://github.com/IES-Rafael-Alberti/prog-practica-libre-trimestre-2-lnarote777/blob/2116602827d345444b8225a9386c8430944d6d74/src/main/kotlin/Polizas/PolizaVida.kt#L10-L12
   https://github.com/IES-Rafael-Alberti/prog-practica-libre-trimestre-2-lnarote777/blob/2116602827d345444b8225a9386c8430944d6d74/src/main/kotlin/Polizas/PolizaDeceso.kt#L4-L6
+
+  En cuanto al tipo de herencia, principalmente se utiliza la especialización y extensión, ya que cada una de las distintas clases de seguros son extensiones especializadas de la clase abstracta Poliza. Cada una de estas clases especializa el el comportamiento en funcion del tipo específico de póliza que representa.
 
 #### **Criterio global 7: Librerías de clases**
 - **(2.g, 4.k)**: Describe cualquier librería externa que hayas incorporado en tu proyecto. Explica cómo y por qué las elegiste, y cómo las incorporaste en tu proyecto. ¿Cómo extendió la funcionalidad de tu aplicación? Proporciona ejemplos específicos de su uso en tu proyecto.
